@@ -1,0 +1,11 @@
+{
+    "name": "Media",
+    "alias": "media",
+    "description": "Private media metadata and storage ownership.",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Media\\Providers\\MediaServiceProvider"
+    ],
+    "files": []
+}

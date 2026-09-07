@@ -1,0 +1,8 @@
+{
+    "name": "modules/media",
+    "autoload": {
+        "psr-4": {
+            "Modules\\Media\\": "app/"
+        }
+    }
+}

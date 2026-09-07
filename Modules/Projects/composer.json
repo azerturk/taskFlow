@@ -1,0 +1,8 @@
+{
+    "name": "modules/projects",
+    "autoload": {
+        "psr-4": {
+            "Modules\\Projects\\": "app/"
+        }
+    }
+}

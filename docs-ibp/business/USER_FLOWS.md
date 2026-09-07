@@ -1,0 +1,74 @@
+# İstifadəçi axınları
+
+## Giriş və hesab lifecycle
+
+1. Administrator daxili istifadəçini ad, normallaşdırılmış e-poçt, parol və bir qlobal rol ilə yaradır.
+2. Aktiv istifadəçi session login edir; uğurlu girişdə session ID yenilənir.
+3. İstifadəçi öz parolunu cari parol təsdiqi ilə dəyişə bilər.
+4. Administrator istifadəçini suspend etdikdə sistem eyni use case daxilində access-i bağlayır, session/token-ləri ləğv edir, açıq assignment-ları təmizləyir və watcher-ləri silir.
+5. Reactivate yeni girişə icazə verir, lakin əvvəlki token/session və assignment/watcher vəziyyətini avtomatik bərpa etmir.
+
+## Layihə lifecycle
+
+1. Admin və ya `project_manager` layihəni yaradır; layihə `draft` olur və creator owner/manager kimi əlavə edilir.
+2. Manager active istifadəçiləri layihəyə `manager` və ya `member` kimi əlavə edir.
+3. Manager layihəni `active` edir.
+4. Komanda work item, label, comment, watcher və media axınlarından istifadə edir.
+5. Manager layihəni `completed` edir; bütün mutasiyalar dayanır.
+6. Lazım olarsa manager completed layihəni yenidən `active` edir.
+7. Archive terminal read-only vəziyyətdir.
+
+## İşin report edilməsi və icrası
+
+1. Active layihə üzvü Task/Bug/Story/Subtask yaradır.
+2. Sistem reporter-i aktordan götürür, project-local nömrə ayırır, statusu `backlog`, rank-ı sütunun sonu edir və reporter-i watcher əlavə edir.
+3. Reporter işi unassigned saxlaya və ya özünə assign edə bilər; manager başqa aktiv üzvə assign edə bilər.
+4. Assignment yeni assignee-ni watcher edir və actor xaric uyğun recipient-ə bildiriş yaradır.
+5. Assignee workflow-un icazəli keçidləri ilə işi progress edir; manager icazəli reopen daxil bütün keçidləri edə bilər.
+6. Hər status yazısında client-in `expected_version` dəyəri cari version ilə müqayisə edilir.
+
+## Backlog və board
+
+1. Backlog yalnız backlog işlərini project-local rank sırası ilə göstərir.
+2. Manager qonşu work item-ləri göstərərək işi yenidən sıralayır.
+3. Board drag/drop eyni backend status və rank use case-lərini çağırır.
+4. JavaScript olmasa status form-u və manager reorder fallback-ı əsas əməliyyatı təhlükəsiz saxlayır.
+5. Conflict zamanı UI cari state-i yeniləməyi tələb edir; raw rank qəbul edilmir.
+
+## Subtask
+
+1. Creator `subtask` seçəndə eyni layihədən standard parent seçir.
+2. Sistem parent-in subtask olmadığını və eyni layihədə olduğunu yoxlayır.
+3. Parent-in açıq child-ları qaldıqda `done` keçidi rədd edilir.
+
+## Əməkdaşlıq
+
+- Label: manager layihə label-ını yaradır; icazəli editor onu işə bağlayır.
+- Watcher: üzv özünü, manager başqa aktiv üzvü əlavə/silə bilər.
+- Comment: hər görünən active-project işi üzrə plain-text şərh yazılır; author və manager silə bilir.
+- Notification: assignment, watched comment və watched status dəyişikliyi inbox-a düşür; read/read-all Web əməliyyatıdır.
+
+## Media
+
+1. İstifadəçi bir request-də ən çox 5 fayl seçir.
+2. Sistem hamısını saxlamadan əvvəl count, size, content, MIME/extension və image ölçülərinə görə yoxlayır.
+3. Media random private path-də saxlanır, metadata Media modulunda, Task–Media əlaqəsi Tasks modulunda yaranır.
+4. Hər hansı addım uğursuz olsa həmin batch tam kompensasiya olunur.
+5. Authorized istifadəçi image/PDF preview və bütün tiplər üçün download edir.
+6. Uploader və ya manager active layihədə attachment-i silir; fiziki silinmə alınmasa retry üçün safe UUID-li aktiv Media metadata qalır.
+
+## Dashboard və Activity
+
+- Dashboard yalnız actor-un görə bildiyi layihə/işlərdən metrik və limitli queue-lar yaradır.
+- My Assigned, Reported by Me, My Watched və Overdue bir-birindən ayrı queue-dur.
+- Activity global görünən, project və task səviyyəsində eyni scope ilə filtr olunur.
+- QuickTaskCreate full create use case-i istifadə edir və client-owned status/rank qəbul etmir.
+
+## API token axını
+
+1. Client `POST /api/v1/auth/token` ilə credential, device name və allowlist ability-ləri göndərir.
+2. Plaintext token yalnız 201 cavabında bir dəfə qaytarılır.
+3. Protected request Bearer token, active account, ability, permission və policy yoxlamalarından keçir.
+4. `GET /api/v1/me` cari actor-u qaytarır.
+5. `DELETE /api/v1/auth/token` yalnız cari token-i ləğv edir və 204 qaytarır.
+
