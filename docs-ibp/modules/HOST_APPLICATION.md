@@ -16,6 +16,8 @@ Laravel host tətbiqi modullara aid olmayan platforma axınlarına sahibdir:
 
 Public registration yoxdur. Hər account `active|suspended` statusu və dəqiq bir `admin|project_manager|member` rolu daşıyır. Son aktiv admin qorunur.
 
+`EnsureActiveUser` qorunan Web/API request-ləri ilə yanaşı ilkin qorunan route-dan yaranan hər Livewire update request-ində persistent middleware kimi yenidən işləyir. Stale session və ya köhnə Livewire snapshot suspend edilmiş actor üçün 401/fail-closed nəticə verir; record-level policy-lər bu account sərhədini əvəz etmir.
+
 `UserAdministrationService` suspend use case-in üst transaction sahibidir: login access bağlanır, session/PAT-lər ləğv edilir, Tasks vasitəsilə açıq işlər unassign və watcher-lər silinir, Activity tarixçəsi yazılır. Tarixi reporter/assignee əlaqələri silinmir.
 
 `AuthenticationService` credential attempt, throttling və session orchestration sahibidir; Form Request yalnız input shape yoxlayır. Plaintext token yalnız issuance cavabında bir dəfə təqdim olunur.

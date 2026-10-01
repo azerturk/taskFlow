@@ -36,10 +36,16 @@ test('the status selector renders service-provided transitions and submits the v
         ->assertDontSee('In Progress')
         ->set('status', TaskStatus::Todo->value)
         ->call('change')
-        ->assertSee('Task status updated.')
-        ->assertSet('expectedVersion', $task->version + 1);
+        ->assertRedirect(route('tasks.show', $task));
 
-    expect($task->fresh()->status)->toBe(TaskStatus::Todo);
+    expect($task->fresh()->status)->toBe(TaskStatus::Todo)
+        ->and($task->fresh()->version)->toBe($task->version + 1);
+
+    $this->get(route('tasks.show', $task))
+        ->assertOk()
+        ->assertSee('Todo')
+        ->assertSee('Task status changed')
+        ->assertSee('Backlog → Todo');
 });
 
 test('the selector reports invalid and stale requests through canonical validation and conflict rules', function (): void {

@@ -81,9 +81,13 @@ test('journey 3: manager creates and activates a project then manages membership
     await signIn(page, 'manager@e2e.test');
     await visit(page, '/projects/create');
     await page.getByLabel('Project name').fill(name);
-    await page.getByLabel('Project key').fill(profile === 'desktop' ? 'DSK' : 'MOB');
+    const rawKey = profile === 'desktop' ? 'dsk' : 'mOb';
+    const canonicalKey = rawKey.toUpperCase();
+    await page.getByLabel('Project key').fill(rawKey);
+    await expect(page.getByLabel('Project key')).toHaveValue(canonicalKey);
     await page.getByRole('button', { name: 'Create project' }).click();
     await expect(page.getByRole('heading', { name })).toBeVisible();
+    await expect(page.getByText(canonicalKey, { exact: true }).first()).toBeVisible();
     await page.getByRole('button', { name: 'Activate project' }).click();
     await expect(page.getByText('Active', { exact: true }).first()).toBeVisible();
     await page.getByRole('link', { name: 'Manage members' }).click();
@@ -121,7 +125,8 @@ test('journey 4: member reports a bug manager assigns it and assignee progresses
     await visit(page, task);
     await page.getByLabel('New status').selectOption('todo');
     await page.getByRole('button', { name: 'Update status' }).click();
-    await expect(page.getByText('Task status updated.')).toBeVisible();
+    await expect(page.getByText('Todo', { exact: true }).first()).toBeVisible();
+    await expect(page.getByText('Task status changed', { exact: true }).first()).toBeVisible();
 });
 
 test('journey 5: backlog reorder and Kanban drag drop persist', async ({ page }, testInfo) => {
@@ -175,6 +180,12 @@ test('journey 7: watch comment and notification flow reaches the watcher', async
     await signIn(page, 'member@e2e.test');
     const task = await taskHref(page, 'E2E browser task');
     await visit(page, task);
+    await expect(page.getByRole('heading', { name: 'Watchers' })).toBeVisible();
+    await expect(page.getByText('E2E Member', { exact: true }).first()).toBeVisible();
+    await page.getByRole('button', { name: 'Unwatch task' }).click();
+    await expect(page.getByRole('button', { name: 'Watch task' })).toBeVisible();
+    await page.getByRole('button', { name: 'Watch task' }).click();
+    await expect(page.getByRole('button', { name: 'Unwatch task' })).toBeVisible();
     await page.getByLabel('Comment').fill(body);
     await page.getByRole('button', { name: 'Add comment' }).click();
     await expect(page.getByText(body, { exact: true })).toBeVisible();
@@ -266,8 +277,11 @@ test('journey 10: navigation keyboard modal focus and JS-disabled core forms rem
     await signIn(noJs, 'manager@e2e.test');
     await visit(noJs, '/projects/create');
     await noJs.getByLabel('Project name').fill(`E2E ${profile} no JS`);
-    await noJs.getByLabel('Project key').fill(profile === 'desktop' ? 'NJD' : 'NJM');
+    const noJsKey = profile === 'desktop' ? 'njd' : 'nJm';
+    await noJs.getByLabel('Project key').fill(noJsKey);
+    await expect(noJs.getByLabel('Project key')).toHaveValue(noJsKey);
     await noJs.getByRole('button', { name: 'Create project' }).click();
     await expect(noJs.getByRole('heading', { name: `E2E ${profile} no JS` })).toBeVisible();
+    await expect(noJs.getByText(noJsKey.toUpperCase(), { exact: true }).first()).toBeVisible();
     await context.close();
 });

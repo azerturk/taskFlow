@@ -15,8 +15,8 @@
 
     <div>
         <label for="key" class="mb-2 block text-sm font-semibold text-slate-800">Project key</label>
-        <input id="key" name="key" type="text" value="{{ old('key', $project->key ?? '') }}" required maxlength="10" pattern="[A-Z][A-Z0-9]{1,9}" @disabled(isset($project) && $project->next_issue_number > 1) class="block w-full rounded-xl border border-slate-300 bg-white px-4 py-3 font-mono uppercase text-slate-900 @error('key') border-rose-400 @enderror">
-        <p class="mt-2 text-xs text-slate-500">2–10 böyük hərf/rəqəm. İlk issue yarandıqdan sonra dəyişdirilə bilməz.</p>
+        <input id="key" name="key" type="text" value="{{ old('key', $project->key ?? '') }}" required maxlength="10" pattern="[A-Za-z][A-Za-z0-9]{1,9}" data-project-key autocapitalize="characters" spellcheck="false" @disabled(isset($project) && $project->next_issue_number > 1) class="block w-full rounded-xl border border-slate-300 bg-white px-4 py-3 font-mono text-slate-900 @error('key') border-rose-400 @enderror">
+        <p class="mt-2 text-xs text-slate-500">2–10 hərf/rəqəm; məsələn, PAY. Dəyər böyük hərfə çevrilir, task açarı isə PAY-42 kimi ayrıca yaranır. İlk taskdan sonra project key dəyişmir.</p>
         @if (isset($project) && $project->next_issue_number > 1)<input type="hidden" name="key" value="{{ $project->key }}">@endif
         @error('key')<p class="mt-2 text-sm font-medium text-rose-600">{{ $message }}</p>@enderror
     </div>

@@ -16,6 +16,4 @@
             <div class="mt-3 flex items-center gap-3"><x-button>Update status</x-button><span wire:loading wire:target="change" class="text-sm font-medium text-indigo-700" role="status">Updating…</span></div>
         </form>
     @endif
-
-    @if ($success)<p class="mt-4 text-sm font-semibold text-emerald-700" role="status">{{ $success }}</p>@endif
 </div>

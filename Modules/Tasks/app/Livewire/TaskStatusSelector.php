@@ -21,8 +21,6 @@ class TaskStatusSelector extends Component
 
     public string $status = '';
 
-    public ?string $success = null;
-
     public function mount(Task $task): void
     {
         $this->authorize('view', $task);
@@ -51,8 +49,8 @@ class TaskStatusSelector extends Component
 
         $this->expectedVersion = $task->version;
         $this->status = '';
-        $this->success = 'Task status updated.';
         $this->resetValidation();
+        $this->redirectRoute('tasks.show', ['task' => $task]);
     }
 
     public function render(TaskStatusService $statuses)

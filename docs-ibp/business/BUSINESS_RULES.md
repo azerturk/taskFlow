@@ -11,7 +11,7 @@
 
 ## Layihələr
 
-- Layihənin adı, təsviri, unikal slug-u, 2–10 simvolluq unikal böyük hərfli key-i, owner-i, üzvləri, tarixləri və lokal issue sequence-i var.
+- Layihənin adı, təsviri, unikal slug-u, 2–10 simvolluq unikal böyük hərfli canonical key-i, owner-i, üzvləri, tarixləri və lokal issue sequence-i var. Xam key inputu trim edilir və böyük hərfə çevrilir.
 - Yeni layihə `draft` yaranır. Keçidlər:
 
 ```text
@@ -111,4 +111,3 @@ cancelled   -> backlog
 - Payload yalnız təsdiqlənmiş köhnə/yeni dəyərlər və safe summary saxlayır; credential, token, header, cookie, path, checksum və binary saxlamır.
 - Dashboard və Activity list/API ilə eyni actor-visible scope-u istifadə edir.
 - Dashboard project status sayları, ümumi iş, workflow/type paylanması, overdue, completed-today, assigned/reported/watched queue-ları, son Activity və QuickTaskCreate göstərir.
-

@@ -20,6 +20,10 @@ Tasks work item lifecycle və əməkdaşlıq səthinin sahibidir: task, subtask,
 
 Purpose-specific create/update/assignment/status/rank/label/watcher/comment/media service-ləri transaction və side-effect sahibliyini bölüşür. Top-level mutation transaction-a sahibdir; nested collaborator əlavə opaque transaction açmır. Query service-lər controller və Livewire üçün authorization-ready, eager-loaded result hazırlayır.
 
+Task detail query-si watcher-ləri eager-load edir, cari actor-un watch vəziyyətini və manager üçün aktiv üzv namizədlərini presentation-ready qaytarır. Self və manager watcher mutation-ları yenə `TaskWatcherController -> TaskWatcherService` sərhədindən keçir. Completed/archived project-də siyahı görünür, mutation control-u göstərilmir.
+
+`TaskStatusSelector` uğurlu status dəyişikliyindən sonra task detail route-una tam redirect edir. Bununla component xaricindəki header badge, version-dan asılı control-lar və Recent activity eyni canonical server state-dən yenidən render olunur; JavaScript-siz status formu da eyni service flow-dan sonra server redirect-i edir.
+
 Repositories Eloquent scope, filter, sort, pagination, eager load, lock, issue sequence, rank append/rebalance və write əməliyyatlarına sahibdir. Contract `Builder` qaytarmır.
 
 ## Asılılıqlar

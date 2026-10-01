@@ -28,7 +28,7 @@
 - Logout session-u invalidate, CSRF token-i regenerate edir.
 - Login Form Request yalnız input shape yoxlayır; credential attempt və session orchestration `AuthenticationService`-dədir.
 - Public registration route-u yoxdur.
-- Suspended actor login/token ala bilməz; `EnsureActiveUser` cari authenticated actor-u fail-closed yoxlayır və əlavə unconditional `fresh()` query etmir.
+- Suspended actor login/token ala bilməz; `EnsureActiveUser` cari authenticated actor-u fail-closed yoxlayır və əlavə unconditional `fresh()` query etmir. Middleware ilkin qorunan route-un Livewire snapshot-ından real update endpoint-ə persistent tətbiq olunur; stale snapshot account-status yoxlamasını bypass etmir.
 - Son aktiv admin suspend/demote edilmir.
 - Parol heç vaxt loglanmır; hash olunur.
 - Admin reset target-in bütün session/PAT-lərini, self-change digər session-ları və bütün PAT-ləri ləğv edir.
@@ -52,6 +52,7 @@
 - Missing, hidden, soft-deleted, removed-membership və wrong-parent record eyni `resource_not_found` 404 cavabını verir.
 - Ability denial record binding-dən əvvəl 403 verir və record existence göstərmir.
 - Completed/Archived state Web, API, Livewire və direct service çağırışında mutasiyanı bloklayır.
+- Köhnə Livewire snapshot yeni səlahiyyət vermir: account statusu hər update request-də, project/task visibility isə component query/policy/service sərhədində yenidən qiymətləndirilir.
 
 ## Input və output
 
@@ -118,4 +119,3 @@ Generic `LogicException`, `ModelNotFoundException`, DB/storage/runtime mesajı h
 ## Roadmap sərhədi
 
 2FA, malware quarantine, strict CSP rollout, token expiry/rotation UI, security-event alerting, automated dependency/container/secret scanning, retention/privacy və incident runbook-ları cari implementasiyanın hissəsi deyil; yalnız [`ROADMAP.md`](../../ROADMAP.md) daxilindədir.
-

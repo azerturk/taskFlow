@@ -5,6 +5,7 @@ namespace Modules\Tasks\Services;
 use App\Models\User;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Modules\Activity\Services\ActivityQueryService;
+use Modules\Projects\Enums\ProjectStatus;
 use Modules\Projects\Models\Project;
 use Modules\Projects\Services\ProjectMemberService;
 use Modules\Tasks\Data\TaskFiltersData;
@@ -54,10 +55,24 @@ class TaskQueryService
     public function detailPage(User $actor, Task $task, bool $includeActivity): array
     {
         $task = $this->tasks->prepareForWebDetail($task);
+        $memberships = $this->members->memberships($task->project);
+        $watcherIds = $task->watchers->modelKeys();
+        $canMutateWatchers = $task->project->status === ProjectStatus::Active;
+        $canManageWatchers = $canMutateWatchers && $this->members->canManage($task->project, $actor);
 
         return [
             'task' => $task,
-            'memberships' => $this->members->memberships($task->project),
+            'memberships' => $memberships,
+            'isWatching' => in_array($actor->id, $watcherIds, true),
+            'canMutateWatchers' => $canMutateWatchers,
+            'canManageWatchers' => $canManageWatchers,
+            'watcherCandidates' => $canManageWatchers
+                ? $memberships
+                    ->filter(fn ($membership): bool => $membership->user->isActive()
+                        && $membership->user_id !== $actor->id
+                        && ! in_array($membership->user_id, $watcherIds, true))
+                    ->values()
+                : collect(),
             'activities' => $includeActivity ? $this->activity->recentForTask($task) : null,
             'canViewActivity' => $includeActivity,
         ];

@@ -18,6 +18,7 @@ Modules/{Projects,Tasks,Media,Activity,Dashboard}/tests/{Unit,Feature}
 - Repository/integration: visibility, filter/sort/pagination, constraint, lock və migration.
 - Feature: Web/API/security/authorization/Activity/notification.
 - Livewire: yalnız dörd təsdiqlənmiş component-in validation və service parity-si.
+- Livewire transport təhlükəsizliyi: real page snapshot + real update HTTP request ilə persistent middleware, suspend və membership revocation regression-ları.
 - Architecture: qat və module sərhədləri.
 - Playwright: 10 kritik journey, desktop və mobile olmaqla 20 icra.
 
@@ -36,7 +37,7 @@ Bu profil `.env` və production credential-larını istifadə etmir.
 
 ## MySQL profili
 
-`phpunit-mysql.xml` eyni 247 testi Herd MySQL-də işlədir. Bootstrap yalnız `.env.testing` daxilindəki `TASKFLOW_MYSQL_TEST_*` açarlarını oxuyur və database adı `taskflow_test` prefix-inə uyğun olmayanda fail-closed dayanır.
+`phpunit-mysql.xml` default Pest suite-in eyni testlərini Herd MySQL-də işlədir. Bootstrap yalnız `.env.testing` daxilindəki `TASKFLOW_MYSQL_TEST_*` açarlarını oxuyur və database adı `taskflow_test` prefix-inə uyğun olmayanda fail-closed dayanır.
 
 MySQL profili fresh migration, JSON/Activity query, constraint, issue/rank locking davranışı və tam rollback-i real MySQL semantics ilə yoxlayır. Cari layihə üçün qəbul edilmiş runtime Windows + Herd-dir; ayrıca Unix/Linux gate-i tələb olunmur.
 
@@ -70,6 +71,9 @@ npm ci --ignore-scripts --dry-run
 - Critical matrix-lər global role × project role × reporter/assignee/watcher/outsider, ability × policy, project lifecycle və media/comment ownership-i əhatə edir.
 - Filter test-ləri inaccessible və nonexistent ID-lərin eyni safe nəticə verməsini sübut edir.
 - Query-budget test-ləri Dashboard, workspace header, detail və notification presentation-da N+1-i bloklayır.
+- Project key regression-u backend canonical normalizasiya ilə yanaşı JS aktiv və JS-siz native browser constraint validation səviyyəsində yoxlanır.
+- Task detail watcher regression-u self-watch/unwatch, manager target idarəsi və read-only lifecycle görünüşünü yoxlayır.
+- Livewire status regression-u uğurlu mutation-dan sonra full redirect, yeni header statusu və yeni Activity görünüşünü yoxlayır.
 - Multi-file media test-ləri validation/storage/association/Activity failure-larında bütün request compensation-ını yoxlayır.
 - Architecture mutation fixture-ləri həm `\` həm `/` separator formalarını yoxlayır.
 - Skipped/focused/flaky test release sübutu sayıla bilməz.
@@ -92,4 +96,3 @@ Hər journey desktop və mobile project-də icra olunur. Edge case-lər Playwrig
 ## Son qəbul nəticəsi
 
 Tarix, runtime, dəqiq test/assertion sayı və digər gate nəticələri [`RELEASE_BASELINE.md`](RELEASE_BASELINE.md) sənədindədir.
-

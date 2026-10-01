@@ -55,3 +55,161 @@ Workspace/multi-tenancy, sprint, epic, release planning, story point, custom fie
 3. Cari [`ARCHITECTURE_DECISIONS.md`](docs-ibp/technical/ARCHITECTURE_DECISIONS.md) ilə conflict qiymətləndirilir.
 4. İmplementasiya, migration və rollback strategiyası təsdiqlənir.
 5. Pest/MySQL/Playwright gate-ləri və sənədlər eyni dəyişiklikdə yenilənir.
+
+## Ümumi:
+
+- **Core Architecture**
+    - Modular Monolith
+    - Module Boundary
+    - High Cohesion
+    - Loose Coupling
+    - Separation of Concerns
+    - Encapsulation
+    - Dependency Direction
+    - Dependency Inversion
+    - Internal vs Public API
+
+- **Module Communication**
+    - Module Public API / Contract
+    - Facade
+    - Proxy
+    - Extension
+    - Adapter
+    - Port
+    - Anti-Corruption Layer
+    - Direct Module Call
+    - Indirect Communication
+    - Synchronous Communication
+    - Asynchronous Communication
+
+- **Event-Driven Concepts**
+    - Event-Driven Architecture
+    - Domain Event
+    - Integration Event
+    - Event Handler
+    - Event Dispatcher
+    - Event Bus
+    - Publish / Subscribe
+    - Eventual Consistency
+    - Idempotency
+    - Event Ordering
+    - Event Versioning
+
+- **Reliability**
+    - Transactional Outbox
+    - Inbox Pattern
+    - At-Least-Once Delivery
+    - Duplicate Message Handling
+    - Retry
+    - Dead Letter Queue
+    - Failure Recovery
+
+- **Domain & Application Design**
+    - DDD
+    - Bounded Context
+    - Aggregate
+    - Aggregate Root
+    - Entity
+    - Value Object
+    - Domain Service
+    - Application Service
+    - Repository
+    - Command
+    - Query
+    - CQRS
+    - Use Case
+    - Transaction Boundary
+
+- **Database Isolation**
+    - Database per Module
+    - Schema per Module
+    - Schema-Based Database Isolation
+    - Table Ownership
+    - No Cross-Module Table Access
+    - Cross-Module Data Access
+    - Read Model
+    - Projection
+    - Foreign Key Boundaries
+    - Distributed Transaction Avoidance
+
+- **Dependency Management**
+    - Allowed Dependencies
+    - Forbidden Dependencies
+    - Cyclic Dependency
+    - Dependency Graph
+    - Shared Kernel
+    - Shared Abstractions
+    - Common Module
+    - Module Dependency Rules
+
+- **Architecture Enforcement**
+    - Architecture Tests
+    - Dependency Tests
+    - Layer Tests
+    - Module Boundary Tests
+    - Naming Convention Tests
+    - Forbidden Reference Tests
+    - ArchUnit / NetArchTest tipli yanaşmalar
+
+- **Extensibility**
+    - Extension Points
+    - Plugin Architecture
+    - Strategy Pattern
+    - Factory
+    - Decorator
+    - Middleware / Pipeline
+    - Hook
+    - Module Registration
+
+- **API & Contract Design**
+    - Contract Stability
+    - Contract Versioning
+    - DTO
+    - Request / Response Model
+    - Internal Contract
+    - Integration Contract
+    - Backward Compatibility
+    - Breaking Change
+
+- **Consistency & Transactions**
+    - Strong Consistency
+    - Eventual Consistency
+    - Local Transaction
+    - Cross-Module Transaction
+    - Saga
+    - Process Manager
+    - Compensating Action
+
+- **Observability**
+    - Structured Logging
+    - Correlation ID
+    - Trace ID
+    - Distributed Tracing mindset
+    - Metrics
+    - Audit Log
+    - Event Tracking
+
+- **Testing**
+    - Unit Test
+    - Integration Test
+    - Module Integration Test
+    - Contract Test
+    - Architecture Test
+    - End-to-End Test
+    - Test Isolation
+
+- **Common Anti-Patterns**
+    - Big Ball of Mud
+    - Shared Database Everything
+    - Cross-Module Repository Access
+    - Cross-Module Entity Usage
+    - God Module
+    - God Service
+    - Circular Dependency
+    - Leaky Abstraction
+    - Shared DTO Everywhere
+    - Hidden Coupling
+    - Temporal Coupling
+    - Distributed Monolith
+
+**Modular Monolith → Module Boundaries → High Cohesion → Loose Coupling → Public API/Contract → Facade/Proxy/Extension → Domain & Integration Events → Event-Driven Communication → Outbox/Inbox → Idempotency → Eventual Consistency → Schema-per-Module → Architecture Tests → Dependency Rules → Contract Tests → Observability.**

@@ -7,6 +7,7 @@ Projects layihə aggregate-i, lifecycle, owner və project membership-in sahibid
 ## Model və qaydalar
 
 - `Project`: name, slug, immutable-after-first-issue key, description, status, owner, tarixlər və `next_issue_number`.
+- Project key xam Web/API inputunda lowercase və mixed-case ola bilər, server canonical dəyəri trim edib böyük hərfə çevirir; `PAY` project key, `PAY-42` isə serverin yaratdığı task display key-dir.
 - `ProjectMember`: project/user cütü, `manager|member` rolu və joined time.
 - Yeni layihə `draft`, creator owner/manager olur.
 - Yalnız `active` layihə məhsul mutasiyası qəbul edir.
@@ -16,7 +17,7 @@ Projects layihə aggregate-i, lifecycle, owner və project membership-in sahibid
 
 ## Application sərhədləri
 
-`ProjectService` create/update/lifecycle və tam səhifə nəticələrini, `ProjectMemberService` membership use case-lərini orkestrasiya edir. Controller-lər repository çağırmır. Repository actor scope, pagination, eager loading, key/slug persistence və project sequence lock-larını idarə edir.
+`ProjectService` create/update/lifecycle, `ProjectMemberService` membership use case-lərini orkestrasiya edir; `ProjectQueryService` Web/API üçün presentation-ready səhifə nəticələrini hazırlayır. Controller-lər repository çağırmır. Repository actor scope, pagination, eager loading, key/slug persistence və project sequence lock-larını idarə edir.
 
 ## Asılılıqlar
 
@@ -24,4 +25,4 @@ Projects Activity yazır; member removal və lifecycle integrity üçün Tasks q
 
 ## Səth və testlər
 
-Web project list/detail/create/edit/lifecycle/member səhifələrini, API isə 9 project və membership əməliyyatını təqdim edir. Policy matrix, lifecycle, immutable key, owner protection, scope, query budget, Activity və SQLite/MySQL constraint-lər Pest ilə qorunur.
+Web project list/detail/create/edit/lifecycle/member səhifələrini təqdim edir. Active project detail-də yalnız manager üçün görünən label idarəetmə keçidi var. API 9 project və membership əməliyyatını təqdim edir. Policy matrix, lifecycle, immutable key, browser/server key müqaviləsi, owner protection, scope, query budget, Activity və SQLite/MySQL constraint-lər Pest ilə qorunur.

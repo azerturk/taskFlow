@@ -105,6 +105,12 @@ document.querySelectorAll('[data-character-counter]').forEach((field) => {
     update();
 });
 
+document.querySelectorAll('[data-project-key]').forEach((field) => {
+    field.addEventListener('input', () => {
+        field.value = field.value.toUpperCase();
+    });
+});
+
 document.querySelectorAll('[data-copy-text]').forEach((button) => {
     button.addEventListener('click', async () => {
         const value = button.dataset.copyText;

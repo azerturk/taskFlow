@@ -58,6 +58,47 @@ it('validates Web project list filters and create input with useful errors', fun
         ->assertSessionHasErrors('key');
 });
 
+it('keeps the browser project-key contract aligned with server normalization', function (): void {
+    $manager = User::factory()->asProjectManager()->create();
+
+    $this->actingAs($manager)
+        ->get(route('projects.create'))
+        ->assertOk()
+        ->assertSee('pattern="[A-Za-z][A-Za-z0-9]{1,9}"', false)
+        ->assertSee('data-project-key', false)
+        ->assertSee('PAY-42');
+
+    $this->actingAs($manager)
+        ->post(route('projects.store'), ['name' => 'Mixed case project', 'key' => 'mQa'])
+        ->assertRedirect();
+
+    expect(Project::query()->where('name', 'Mixed case project')->value('key'))->toBe('MQA');
+});
+
+it('shows label management only to managers of active projects', function (): void {
+    $manager = User::factory()->asProjectManager()->create();
+    $member = User::factory()->asMember()->create();
+    $project = scopedPresentationProject($manager);
+    app(ProjectMemberService::class)->addMember($project, $member, ProjectMemberRole::Member, actor: $manager);
+
+    $this->actingAs($manager)
+        ->get(route('projects.show', $project))
+        ->assertOk()
+        ->assertSee('Manage labels');
+
+    $this->actingAs($member)
+        ->get(route('projects.show', $project))
+        ->assertOk()
+        ->assertDontSee('Manage labels');
+
+    $project->update(['status' => 'completed']);
+
+    $this->actingAs($manager)
+        ->get(route('projects.show', $project->fresh()))
+        ->assertOk()
+        ->assertDontSee('Manage labels');
+});
+
 it('returns scoped project resources with counts and exact create/update/status envelopes', function (): void {
     $owner = User::factory()->asProjectManager()->create();
     $project = scopedPresentationProject($owner);

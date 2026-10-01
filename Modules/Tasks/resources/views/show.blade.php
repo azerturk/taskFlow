@@ -25,6 +25,8 @@
             @endforeach
         </section>
 
+        @include('tasks::partials.watchers')
+
         @if (auth()->user()->can('assign', $task) || auth()->user()->can('changeStatus', $task))
             <section class="mt-7 grid gap-5 lg:grid-cols-2">
                 @can('assign', $task)<form method="POST" action="{{ route('tasks.assign', $task) }}" class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">@csrf @method('PATCH')<h3 class="text-lg font-semibold text-slate-950">Assignment</h3><p class="mt-1 text-sm text-slate-500">Assign or reassign this task to an available project member.</p><label for="assignee_id" class="sr-only">Assignee</label><select id="assignee_id" name="assignee_id" class="mt-5 block w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm"><option value="">Unassigned</option>@foreach($memberships as $membership)<option value="{{ $membership->user_id }}" @selected($task->assignee_id === $membership->user_id)>{{ $membership->user->name ?: $membership->user->email }}</option>@endforeach</select><button type="submit" class="mt-3 rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-500">Save assignee</button></form>@endcan

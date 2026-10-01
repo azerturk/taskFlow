@@ -2,7 +2,24 @@
 
 ## Qəbul statusu
 
-2026-09-07 (Asia/Baku) tarixində roadmap-xarici TaskFlow implementasiyası Windows + Laravel Herd qəbul mühitində tam avtomatlaşdırılmış gate-lərdən keçib. Açıq implementation task/status sənədi saxlanılmır; bu fayl cari yoxlanmış baseline sübutudur.
+2026-09-07 (Asia/Baku) tarixində roadmap-xarici TaskFlow implementasiyası Windows + Laravel Herd qəbul mühitində tam avtomatlaşdırılmış gate-lərdən keçib. Açıq implementation task/status sənədi saxlanılmır; bu fayl son tam release baseline-ını və ondan sonrakı incremental yoxlamaları saxlayır.
+
+## 2026-10-01 incremental yoxlama
+
+Junior hesabatlarından təsdiqlənən Livewire active-user sərhədi, Project Key browser müqaviləsi, task-detail watcher UI-sı, status səhifə sinxronizasiyası və label keçidi implementasiya edildikdən sonra aşağıdakı nəticələr alınıb:
+
+| Gate | Nəticə |
+|---|---|
+| Tam SQLite Pest | PASS — 254/254 test, 1905 assertion |
+| Tam dedicated Herd MySQL Pest | PASS — 254/254 test, 1905 assertion |
+| Məqsədli regression + query budget | PASS — 23/23 test, 158 assertion |
+| Architecture | PASS — 24/24 test, 89 assertion |
+| Static/security/route | PASS — 27/27 test, 138 assertion |
+| PHP format | PASS |
+| Production asset | PASS — Vite 8.2.1 |
+| Playwright inventory | PASS — 10 journey × desktop/mobile = 20 |
+
+Project Key və watcher/status journey-lərinin Playwright mənbəyi yenilənib, lakin real browser automation bu incremental run-da ayrıca icazə olmadığı üçün yenidən işə salınmayıb. Buna görə aşağıdakı 2026-09-07 nəticəsi son **tam** browser daxil release baseline-ı olaraq qalır; 2026-10-01 kod vəziyyətinin non-browser gate-ləri tam yaşıldır, yeni browser acceptance-i isə hələ təsdiqlənməyib.
 
 ## Runtime
 

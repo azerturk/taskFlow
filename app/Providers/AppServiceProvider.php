@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Enums\PermissionName;
 use App\Enums\UserRole;
+use App\Http\Middleware\EnsureActiveUser;
 use App\Models\User;
 use App\Repositories\Contracts\NotificationRepositoryInterface;
 use App\Repositories\Contracts\PersonalAccessTokenRepositoryInterface;
@@ -22,6 +23,7 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
+use Livewire\Livewire;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -42,6 +44,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Livewire::addPersistentMiddleware(EnsureActiveUser::class);
+
         RateLimiter::for('taskflow-api', function (Request $request): Limit {
             return Limit::perMinute(120)->by($this->actorKey($request));
         });

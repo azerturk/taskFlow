@@ -49,6 +49,44 @@ test('self-watch and manager watcher management enforce membership without grant
     $this->getJson('/api/v1/tasks/'.$task->id.'/watchers')->assertNotFound();
 });
 
+test('task detail exposes self-watch and manager watcher controls without leaking mutation controls', function (): void {
+    [$manager, $reporter, $watcher, , $project, $task] = watcherContext();
+
+    $this->actingAs($watcher)
+        ->get(route('tasks.show', $task))
+        ->assertOk()
+        ->assertSee('Watch task')
+        ->assertDontSee('Watcher member');
+
+    $this->actingAs($watcher)
+        ->post(route('tasks.watchers.store', $task))
+        ->assertRedirect();
+
+    $this->actingAs($watcher)
+        ->get(route('tasks.show', $task))
+        ->assertOk()
+        ->assertSee('Unwatch task')
+        ->assertSee($watcher->name);
+
+    $this->actingAs($manager)
+        ->get(route('tasks.show', $task))
+        ->assertOk()
+        ->assertSee('Watcher member')
+        ->assertSee($reporter->name)
+        ->assertSee('Remove watcher');
+
+    $project->update(['status' => 'completed']);
+
+    $this->actingAs($manager)
+        ->get(route('tasks.show', $task->fresh()))
+        ->assertOk()
+        ->assertSee($watcher->name)
+        ->assertDontSee('Watch task')
+        ->assertDontSee('Unwatch task')
+        ->assertDontSee('Watcher member')
+        ->assertDontSee('Remove watcher');
+});
+
 test('watchers receive one notification per assignment comment and status action excluding actor', function (): void {
     [$manager, $reporter, $watcher, , , $task] = watcherContext();
     $watchers = app(TaskWatcherService::class);

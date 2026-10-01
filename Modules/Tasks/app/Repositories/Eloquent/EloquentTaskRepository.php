@@ -69,7 +69,7 @@ class EloquentTaskRepository implements TaskRepositoryInterface
         return Task::query()
             ->with([
                 'project', 'creator', 'assignee', 'labels', 'parent', 'subtasks',
-                'comments.user', 'attachments.media.uploader',
+                'comments.user', 'attachments.media.uploader', 'watchers',
             ])
             ->whereKey($task->id)
             ->firstOrFail();
