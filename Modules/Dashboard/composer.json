@@ -1,0 +1,1 @@
+{"name":"modules/dashboard","autoload":{"psr-4":{"Modules\\Dashboard\\":"app/"}}}

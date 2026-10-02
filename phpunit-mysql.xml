@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="tests/bootstrap/mysql.php"
+         colors="true"
+>
+    <testsuites>
+        <testsuite name="Unit">
+            <directory>tests/Unit</directory>
+        </testsuite>
+        <testsuite name="Feature">
+            <directory>tests/Feature</directory>
+        </testsuite>
+        <testsuite name="Architecture">
+            <directory>tests/Architecture</directory>
+        </testsuite>
+        <testsuite name="Module Unit">
+            <directory>Modules/Projects/tests/Unit</directory>
+            <directory>Modules/Tasks/tests/Unit</directory>
+            <directory>Modules/Activity/tests/Unit</directory>
+            <directory>Modules/Dashboard/tests/Unit</directory>
+            <directory>Modules/Media/tests/Unit</directory>
+        </testsuite>
+        <testsuite name="Module Feature">
+            <directory>Modules/Projects/tests/Feature</directory>
+            <directory>Modules/Tasks/tests/Feature</directory>
+            <directory>Modules/Activity/tests/Feature</directory>
+            <directory>Modules/Dashboard/tests/Feature</directory>
+            <directory>Modules/Media/tests/Feature</directory>
+        </testsuite>
+    </testsuites>
+    <source>
+        <include>
+            <directory>app</directory>
+            <directory>Modules</directory>
+        </include>
+    </source>
+</phpunit>

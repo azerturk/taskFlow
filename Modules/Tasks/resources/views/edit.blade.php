@@ -1,0 +1,3 @@
+@extends('layouts.app')
+@section('title', 'Edit task') @section('page-title', 'Edit task')
+@section('content')<div class="mx-auto max-w-3xl"><p class="text-sm font-semibold uppercase tracking-widest text-indigo-600">{{ $task->number }}</p><h2 class="mt-2 text-3xl font-semibold tracking-tight text-slate-950">Refine task details.</h2><p class="mt-2 text-sm leading-6 text-slate-500">Keep the scope, priority, and delivery date accurate for the team.</p><div class="mt-7 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">@php($project = $task->project) @php($priorities = \Modules\Tasks\Enums\TaskPriority::cases()) @include('tasks::_form')</div></div>@endsection
