@@ -12,4 +12,6 @@ pest()->extend(TestCase::class)
         '../Modules/Activity/tests/Feature',
         '../Modules/Dashboard/tests/Feature',
         '../Modules/Media/tests/Feature',
+        '../Modules/LearningCatalog/tests/Feature',
+        '../Modules/LearningInsights/tests/Feature',
     );

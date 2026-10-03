@@ -1,0 +1,8 @@
+{
+    "name": "modules/learning-insights",
+    "autoload": {
+        "psr-4": {
+            "Modules\\LearningInsights\\": "app/"
+        }
+    }
+}

@@ -50,6 +50,12 @@ function relativeSourcePath(string $path): string
     return SourceGuard::relativePath(base_path(), $path);
 }
 
+/** @return array<string, string> */
+function sourceFilesIfPresent(string $directory): array
+{
+    return is_dir(base_path($directory)) ? sourceFiles($directory) : [];
+}
+
 test('controllers do not execute Eloquent DB or Storage queries', function () {
     $violations = [];
 
@@ -299,6 +305,94 @@ test('cross-module dependencies are restricted to explicit files and purposes', 
             }
             if (SourceGuard::resolvesModuleFromContainer($source)) {
                 $violations[] = $relative.' resolves a module through the service locator';
+            }
+        }
+    }
+
+    expect($violations)->toBe([]);
+});
+
+test('LearningCatalog never imports the optional LearningInsights consumer', function (): void {
+    $violations = [];
+
+    foreach (sourceFilesIfPresent('Modules/LearningCatalog/app') as $path => $source) {
+        if (in_array('LearningInsights', SourceGuard::moduleDependencies($source), true)) {
+            $violations[] = relativeSourcePath($path);
+        }
+    }
+
+    expect($violations)->toBe([]);
+});
+
+test('LearningInsights imports only the approved LearningCatalog public API', function (): void {
+    $approvedExactReferences = [
+        'Modules\\LearningCatalog\\Data\\PublishedLearningEntryData',
+        'Modules\\LearningCatalog\\Events\\LearningEntryPublished',
+    ];
+    $violations = [];
+
+    foreach (sourceFilesIfPresent('Modules/LearningInsights/app') as $path => $source) {
+        preg_match_all('/(?:\\\\)?Modules\\\\LearningCatalog\\\\[A-Za-z_\\\\]+/', $source, $matches);
+
+        foreach (array_unique($matches[0]) as $match) {
+            $reference = ltrim($match, '\\');
+            $isContract = str_starts_with($reference, 'Modules\\LearningCatalog\\Contracts\\');
+
+            if (! $isContract && ! in_array($reference, $approvedExactReferences, true)) {
+                $violations[] = relativeSourcePath($path).': '.$reference;
+            }
+        }
+    }
+
+    expect($violations)->toBe([]);
+});
+
+test('LearningInsights never reads Catalog database internals', function (): void {
+    $violations = [];
+
+    foreach (array_merge(
+        sourceFilesIfPresent('Modules/LearningInsights/app'),
+        sourceFilesIfPresent('Modules/LearningInsights/database'),
+    ) as $path => $source) {
+        if (str_contains($source, 'r1_learning_entries')) {
+            $violations[] = relativeSourcePath($path);
+        }
+    }
+
+    expect($violations)->toBe([]);
+});
+
+test('production modules never import either isolated learning module', function (): void {
+    $violations = [];
+
+    foreach (['Projects', 'Tasks', 'Media', 'Activity', 'Dashboard'] as $module) {
+        foreach (sourceFiles("Modules/{$module}/app") as $path => $source) {
+            $dependencies = SourceGuard::moduleDependencies($source);
+
+            foreach (['LearningCatalog', 'LearningInsights'] as $learningModule) {
+                if (in_array($learningModule, $dependencies, true)) {
+                    $violations[] = relativeSourcePath($path).": {$module} -> {$learningModule}";
+                }
+            }
+        }
+    }
+
+    expect($violations)->toBe([]);
+});
+
+test('learning modules expose no HTTP, route, Livewire, or Blade surface', function (): void {
+    $prohibitedPaths = [
+        'app/Http/Controllers',
+        'app/Livewire',
+        'routes',
+        'resources/views',
+    ];
+    $violations = [];
+
+    foreach (['LearningCatalog', 'LearningInsights'] as $module) {
+        foreach ($prohibitedPaths as $path) {
+            if (is_dir(base_path("Modules/{$module}/{$path}"))) {
+                $violations[] = "Modules/{$module}/{$path}";
             }
         }
     }

@@ -1,0 +1,11 @@
+{
+    "name": "LearningCatalog",
+    "alias": "learningcatalog",
+    "description": "Isolated R1 learning catalog module.",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\LearningCatalog\\Providers\\LearningCatalogServiceProvider"
+    ],
+    "files": []
+}
