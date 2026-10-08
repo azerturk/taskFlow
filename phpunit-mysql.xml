@@ -27,6 +27,11 @@
             <directory>Modules/Activity/tests/Feature</directory>
             <directory>Modules/Dashboard/tests/Feature</directory>
             <directory>Modules/Media/tests/Feature</directory>
+            <directory>Modules/LearningCatalog/tests/Feature</directory>
+            <directory>Modules/LearningInsights/tests/Feature</directory>
+        </testsuite>
+        <testsuite name="Learning Integration">
+            <directory>Modules/LearningInsights/tests/Integration</directory>
         </testsuite>
     </testsuites>
     <source>

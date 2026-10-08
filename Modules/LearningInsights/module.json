@@ -1,0 +1,11 @@
+{
+    "name": "LearningInsights",
+    "alias": "learninginsights",
+    "description": "Isolated R1 learning insights module.",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\LearningInsights\\Providers\\LearningInsightsServiceProvider"
+    ],
+    "files": []
+}

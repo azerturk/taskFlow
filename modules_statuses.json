@@ -3,5 +3,7 @@
     "Tasks": true,
     "Activity": true,
     "Dashboard": true,
-    "Media": true
+    "Media": true,
+    "LearningCatalog": true,
+    "LearningInsights": true
 }

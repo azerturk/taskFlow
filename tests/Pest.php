@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -12,4 +13,10 @@ pest()->extend(TestCase::class)
         '../Modules/Activity/tests/Feature',
         '../Modules/Dashboard/tests/Feature',
         '../Modules/Media/tests/Feature',
+        '../Modules/LearningCatalog/tests/Feature',
+        '../Modules/LearningInsights/tests/Feature',
     );
+
+pest()->extend(TestCase::class)
+    ->use(DatabaseMigrations::class)
+    ->in('../Modules/LearningInsights/tests/Integration');

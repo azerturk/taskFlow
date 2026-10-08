@@ -1,0 +1,8 @@
+{
+    "name": "modules/learning-catalog",
+    "autoload": {
+        "psr-4": {
+            "Modules\\LearningCatalog\\": "app/"
+        }
+    }
+}
