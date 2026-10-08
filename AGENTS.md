@@ -22,9 +22,11 @@ API işi üçün `docs-ibp/technical/API.md`, mühit işi üçün `docs-ibp/tech
 
 Conflict prioriteti: açıq istifadəçi göstərişi, `AGENTS.md`, business sənədləri, architecture qərarları, uyğun texniki/modul sənəd, kod. Qərar dəyişirsə eyni işdə kod, test və authoritative sənəd birlikdə yenilənir. Alternativ plan/status/handoff sənədi yaratma.
 
+Bu prioritet dəyişiklik qərarının səlahiyyətini müəyyən edir; cari implementasiya haqqında fakt kod və uyğun testlə yoxlanır. Köhnə sənəd iddiasını fakt kimi qəbul edib kodu səssiz dəyişmə. Cari məhdudiyyətlər sənədlərdə açıq göstərilir.
+
 ## Layihə identikliyi
 
-- Laravel 13, PHP 8.3+
+- Laravel 13 üçün PHP 8.3+; cari lockfile ilə development/test alətləri üçün PHP 8.4.1+ tələb olunur.
 - `nwidart/laravel-modules` modular monolith
 - Blade, Tailwind CSS, Vite, vanilla JavaScript
 - yalnız məhdud Livewire
@@ -34,7 +36,7 @@ Conflict prioriteti: açıq istifadəçi göstərişi, `AGENTS.md`, business sə
 - Spatie Activitylog üzərində Activity modulu
 - Pest + məqsədli Playwright
 
-Modullar yalnız Projects, Tasks, Media, Activity və Dashboard-dur. Authentication, daxili user administration, PAT və notification host application-da qalır. `Api`, `Web`, `Auth`, `Users`, `Core`, `Shared`, `Labels`, `Board` və `Notifications` modulu yaratma.
+Məhsul modulları yalnız Projects, Tasks, Media, Activity və Dashboard-dur. Ayrıca təsdiqlənmiş R1 tədris laboratoriyası LearningCatalog və LearningInsights modullarından ibarətdir; onlar məhsul modullarından izolyasiya olunub, Web/API/UI təqdim etmir. Laboratoriyanın cari davranışı `docs-ibp/labs/r1` daxilindədir; onun mövcudluğu bütöv R1-in tamamlanması və production modullarının refaktoru demək deyil. Authentication, daxili user administration, PAT və notification host application-da qalır. `Api`, `Web`, `Auth`, `Users`, `Core`, `Shared`, `Labels`, `Board` və `Notifications` modulu yaratma.
 
 ## Məhsulun dəyişməz qaydaları
 
@@ -48,9 +50,9 @@ Modullar yalnız Projects, Tasks, Media, Activity və Dashboard-dur. Authenticat
 - Yeni iş backlog və server rank ilə yaranır; client ilkin status/raw rank seçmir.
 - Açıq reorder manager-only; assignee status keçidi target column sonuna append edir.
 - Issue key project-localdır (`PAY-42`); köhnə global nömrələmə müqavilə deyil.
-- Yalnız active project mutable-dir. Completed read-only və reopen edilə bilər; archived read-only və terminaldır.
+- İş/label/watcher/şərh/media mutasiyaları yalnız active project üçündür. Project detail və membership idarəsi draft və active zamanı mümkündür. Completed detail/membership və iş əməliyyatları üçün read-only-dir, amma icazəli lifecycle keçidi ilə active və ya archived edilə bilər; archived terminaldır.
 - Media private-dir və bütün binary/metadata/storage əməliyyatı Media modulundan keçir.
-- Multi-file upload all-or-nothing-dır; əvvəl tam validasiya və hər failure-də tam kompensasiya tələb edir.
+- Multi-file upload əvvəl tam validasiya, DB atomikliyi və hər failure-də saxlanmış faylların kompensasiyasını tələb edir. Xarici cleanup özü də uğursuz ola bilər; cari recovery/log sərhədləri `docs-ibp/technical/TRANSACTIONS_AND_FAILURES.md` daxilindədir.
 - Public registration yoxdur. Suspend session/token-ləri ləğv edir, açıq işi unassign, watcher-ləri silir, tarixi Activity-də qoruyur.
 - Notification database/in-app və Web-only-dir. Dashboard My Watched Work verir; ümumi task filter-də watcher filter yoxdur.
 - Sprint, epic, custom field/workflow, dependency, recurring task, automation, webhook və external integration cari scope deyil.
@@ -92,7 +94,7 @@ Davranış və testlər sabit qalana qədər speculative contract, adapter, bus 
 
 Tasks kodu faylı birbaşa saxlamır. Media random path, detected MIME, size, checksum, image dimensions, safe stream və physical cleanup sahibidir; consuming modul authorization və association sahibidir.
 
-Public disk URL, SVG və executable content yoxdur. Client filename/extension/MIME-ə güvənmə. Delete database/file inconsistency buraxmamalıdır.
+Public disk URL, SVG və executable content yoxdur. Client filename/extension/MIME-ə güvənmə. Delete failure-larını gizlətmə: cari kodda association/Activity commit-i fiziki cleanup-dan əvvəldir; cleanup xətası əlaqəni geri qaytarmır. Bu məhdudiyyət və internal retry `docs-ibp/modules/MEDIA.md` daxilində göstərilir.
 
 ## Livewire və JavaScript
 
@@ -108,6 +110,8 @@ Board drag/drop, modal, preview, counter və copy focused vanilla JavaScript-dir
 ## Validation, authorization və error
 
 Form Request input shape yoxlayır; auth attempt, persistence query, rate-limit orchestration və domain uniqueness qərarı vermir. Policy/Gate access, service state invariantı verir. Sanctum ability policy-ni bypass etmir.
+
+Cari kodda bu query-siz Form Request hədəfinin dörd istisnası var: project create/update key və admin user create/update email `unique` presence rule-ları DB query-si edir. Bu fakt `docs-ibp/technical/SECURITY.md` daxilində açıq qeyd olunur; sənədləşmə adı ilə kod dəyişdirilmir və yeni domain query-lərin Form Request-ə daşınmasına icazə kimi oxunmur.
 
 Expected domain exception məqsədli map olunur:
 

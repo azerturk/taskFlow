@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xml:lang="az" width="1340" height="960" viewBox="0 0 1340 960" role="img" aria-labelledby="title desc">
+<title id="title">Private preview və download</title>
+<desc id="desc">Binary-yə giriş Tasks authorization + association ilə açılır; stream-i Media verir.</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M 0 0 L 10 5 L 0 10 Z" fill="#64748b"/>
+</marker>
+</defs>
+<style>text{font-family:Segoe UI,Arial,sans-serif;fill:#0f172a}path,rect,ellipse{vector-effect:non-scaling-stroke}</style>
+<rect width="1340" height="960" fill="#ffffff"/>
+<text x="36" y="47" font-size="29" text-anchor="start" font-weight="700">Private preview və download</text>
+<text x="36" y="77" font-size="16" text-anchor="start" font-weight="400">Binary-yə giriş Tasks authorization + association ilə açılır; stream-i Media verir.</text>
+<path d="M 365 215 L 460 215" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 900 215 L 1010 215" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 1170 265 L 1170 355 L 1000 355 L 1000 420" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<g>
+<rect x="45" y="160" width="320" height="105" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="205" y="193.5" font-size="18" text-anchor="middle" font-weight="650">Parent Task authorize</text>
+<text x="205" y="218.5" font-size="18" text-anchor="middle" font-weight="400">active actor + view permission</text>
+<text x="205" y="243.5" font-size="18" text-anchor="middle" font-weight="400">görünən project</text>
+</g>
+<g>
+<rect x="460" y="160" width="440" height="105" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="680" y="193.5" font-size="18" text-anchor="middle" font-weight="650">Attachment parent daxilində resolve</text>
+<text x="680" y="218.5" font-size="18" text-anchor="middle" font-weight="400">cross-task / hidden / missing → safe 404</text>
+<text x="680" y="243.5" font-size="18" text-anchor="middle" font-weight="400">Media metadata association-dan alınır</text>
+</g>
+<g>
+<rect x="1010" y="160" width="300" height="105" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
+<text x="1160" y="206" font-size="18" text-anchor="middle" font-weight="650">MediaStorageService</text>
+<text x="1160" y="231" font-size="18" text-anchor="middle" font-weight="400">private disk; exists yoxla</text>
+</g>
+<g>
+<path d="M 1000 420 L 1240 480 L 1000 540 L 760 480 Z" fill="#fffbeb" stroke="#d97706" stroke-width="1.8"/>
+<text x="1000" y="486" font-size="17" text-anchor="middle" font-weight="650">Preview request + image/PDF?</text>
+</g>
+<path d="M 760 480 L 485 480" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="625" y="465" font-size="15" text-anchor="middle" font-weight="400">bəli</text>
+<g>
+<rect x="155" y="430" width="330" height="100" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
+<text x="320" y="473.5" font-size="18" text-anchor="middle" font-weight="650">inline stream</text>
+<text x="320" y="498.5" font-size="18" text-anchor="middle" font-weight="400">image / PDF</text>
+</g>
+<path d="M 1000 540 L 1000 620" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="1000" y="590" font-size="15" text-anchor="middle" font-weight="400">xeyr / download</text>
+<g>
+<rect x="820" y="620" width="360" height="100" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
+<text x="1000" y="663.5" font-size="18" text-anchor="middle" font-weight="650">attachment download</text>
+<text x="1000" y="688.5" font-size="18" text-anchor="middle" font-weight="400">preview də buraya fallback edir</text>
+</g>
+<path d="M 320 530 L 320 780 L 670 780" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 1000 720 L 1000 780 L 670 780" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<g>
+<rect x="440" y="755" width="460" height="100" rx="12" fill="#f1f5f9" stroke="#64748b" stroke-width="1.8"/>
+<text x="670" y="786" font-size="18" text-anchor="middle" font-weight="650">nosniff + private, no-store</text>
+<text x="670" y="811" font-size="18" text-anchor="middle" font-weight="400">safe Content-Disposition + MIME</text>
+<text x="670" y="836" font-size="18" text-anchor="middle" font-weight="400">full-byte stream; Range/206 yoxdur</text>
+</g>
+<g>
+<rect x="45" y="595" width="650" height="101" rx="12" fill="#fffbeb" stroke="#d97706" stroke-width="1.8"/>
+<text x="370" y="626.5" font-size="18" text-anchor="middle" font-weight="650">Fayl yoxdursa storage exception, public URL fallback yoxdur.</text>
+<text x="370" y="651.5" font-size="18" text-anchor="middle" font-weight="400">Disk/path/checksum Resource-da göstərilmir.</text>
+<text x="370" y="676.5" font-size="18" text-anchor="middle" font-weight="400">Completed/archived-də authorized read mümkündür.</text>
+</g>
+<text x="36" y="937" font-size="14" text-anchor="start" font-weight="400">TaskFlow • cari kodun izahı • bütöv repo müqaviləsi üçün docs-ibp</text>
+</svg>

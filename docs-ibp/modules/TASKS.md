@@ -1,5 +1,15 @@
 # Tasks modulu
 
+## Sadə dillə: işin bütün ömrü burada idarə olunur
+
+Bir bug yaradılır, bir nəfərə tapşırılır, mərhələlərdən keçir, şərh və fayl alır, sonra bağlanır. Bu axının mərkəzi Tasks-dır. Amma Tasks bütün işi özü etmir: layihə üzvlüyünü Projects-dən, binary saxlamanı Media-dan, audit yazısını Activity-dən istifadə edərək təşkil edir.
+
+**Use case** istifadəçinin bir məqsədidir, məsələn «statusu dəyiş». Service həmin məqsədin bütöv nəticəsinə sahibdir: təkcə `status` field-ini yazmır, lazım olan version/timestamp/rank/Activity/bildiriş addımlarını da idarə edir.
+
+Bu səbəbdən controller-dən birbaşa `$task->update(...)` yazmaq düzgün qısa yol deyil. Belə yol başqa girişlərdə qorunan qaydaları və yan təsirləri ötürə bilər.
+
+Bu modulu mövzulara bölərək oxu: [yeni iş](../diagrams/flows/task-create.md) → [assignment](../diagrams/flows/assignment.md) → [status](../diagrams/flows/status.md) → [rank](../diagrams/flows/reorder.md). Sonra [subtask](../diagrams/flows/subtask.md) və [əməkdaşlıq](../diagrams/flows/collaboration.md) dərslərinə keç.
+
 ## Məsuliyyət
 
 Tasks work item lifecycle və əməkdaşlıq səthinin sahibidir: task, subtask, project-local issue identity, assignment, status, rank, backlog, board, label, watcher, comment və Task–Media association.
@@ -37,3 +47,19 @@ Projects membership/lifecycle qərarları üçün, Media private binary lifecycl
 - API: 9 core task, 2 backlog/board, 4 label, 3 watcher, 3 comment və 5 media association əməliyyatı.
 
 Exact API [`API.md`](../technical/API.md), biznes qaydaları [`BUSINESS_RULES.md`](../business/BUSINESS_RULES.md) daxilindədir.
+
+## Əsas axınların kod xəritəsi
+
+| İstək | Qaydanın sahibi | Persistence/əməkdaşlıq |
+|---|---|---|
+| Yeni iş | `TaskService::create()` | `ProjectService::allocateIssueNumber`, `TaskRankService::placeAtEnd`, label/watcher, Activity və uyğun assignment bildirişi |
+| Assignment | `TaskAssignmentService::assign()` | Aktiv target membership; versiya artımı; yeni assignee auto-watch; Activity/bildiriş |
+| Status | `TaskStatusService::change()` | Lock, expected version, açıq subtask, `TaskTransitionRules`, timestamp və target-column append |
+| Reorder | `TaskRankService::reorder()` | Manager authority; expected version; eyni sütunda qonşu intent; dəyişiklik yoxdursa əlavə reorder Activity yoxdur |
+| Comment | `TaskCommentService::create/delete()` | Plain text/trim/limit, author/manager silmə, Activity; yeni şərh üçün watcher bildirişi |
+| Watcher | `TaskWatcherService::watch/unwatch()` | Eyni nəticəni təkrar tələb etmək yeni subscription/Activity yaratmır |
+| Media | `TaskAttachmentService::uploadMany/delete()` | Media binary sahibliyi, explicit association və compensation |
+
+`version` yalnız status/rank zamanı artmır: detail və assignment dəyişiklikləri də onu artıra bilər. Amma client `expected_version` müqayisəsi hazırda status və rank yazılarının müqaviləsidir; bütün edit-lər üçün universal optimistic locking kimi təqdim edilmir. Stale status/rank client-i işi yenidən oxumalıdır, kor-koranə eyni yazını təkrarlamamalıdır.
+
+Testlər modulun `tests/Feature` qovluğunda uyğun `TaskWorkflowTest`, `TaskAssignmentRulesTest`, `TaskRankTest`, `TaskTypeAndSubtaskTest`, `TaskAttachmentFailureSafetyTest` və digər məqsədli fayllardır. [Transaction/xəta qaydaları](../technical/TRANSACTIONS_AND_FAILURES.md), [diagramlar](../diagrams/README.md).

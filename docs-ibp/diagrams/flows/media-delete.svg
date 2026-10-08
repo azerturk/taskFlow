@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xml:lang="az" width="1400" height="1050" viewBox="0 0 1400 1050" role="img" aria-labelledby="title desc">
+<title id="title">Attachment silmə: commit və cleanup ayrı mərhələdir</title>
+<desc id="desc">Physical cleanup xətası artıq commit olmuş association silinməsini geri qaytarmır.</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M 0 0 L 10 5 L 0 10 Z" fill="#64748b"/>
+</marker>
+</defs>
+<style>text{font-family:Segoe UI,Arial,sans-serif;fill:#0f172a}path,rect,ellipse{vector-effect:non-scaling-stroke}</style>
+<rect width="1400" height="1050" fill="#ffffff"/>
+<text x="36" y="47" font-size="29" text-anchor="start" font-weight="700">Attachment silmə: commit və cleanup ayrı mərhələdir</text>
+<text x="36" y="77" font-size="16" text-anchor="start" font-weight="400">Physical cleanup xətası artıq commit olmuş association silinməsini geri qaytarmır.</text>
+<path d="M 420 210 L 500 210" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 940 210 L 1030 210" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<g>
+<rect x="45" y="155" width="375" height="110" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="232.5" y="191" font-size="18" text-anchor="middle" font-weight="650">Tasks entry + service yoxlaması</text>
+<text x="232.5" y="216" font-size="18" text-anchor="middle" font-weight="400">active project; uploader və ya manager</text>
+<text x="232.5" y="241" font-size="18" text-anchor="middle" font-weight="400">delete permission; parent scope</text>
+</g>
+<g>
+<rect x="500" y="155" width="440" height="110" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="720" y="191" font-size="18" text-anchor="middle" font-weight="650">DB transaction</text>
+<text x="720" y="216" font-size="18" text-anchor="middle" font-weight="400">attachment association sil</text>
+<text x="720" y="241" font-size="18" text-anchor="middle" font-weight="400">AttachmentDeleted Activity → commit</text>
+</g>
+<g>
+<rect x="1030" y="155" width="325" height="110" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
+<text x="1192.5" y="203.5" font-size="18" text-anchor="middle" font-weight="650">MediaStorageService.delete</text>
+<text x="1192.5" y="228.5" font-size="18" text-anchor="middle" font-weight="400">physical binary cleanup</text>
+</g>
+<path d="M 1190 265 L 1190 360" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<g>
+<path d="M 1190 360 L 1400 415 L 1190 470 L 980 415 Z" fill="#fffbeb" stroke="#d97706" stroke-width="1.8"/>
+<text x="1190" y="421" font-size="17" text-anchor="middle" font-weight="650">Physical cleanup uğurlu?</text>
+</g>
+<path d="M 980 415 L 710 415" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="845" y="400" font-size="15" text-anchor="middle" font-weight="400">bəli</text>
+<g>
+<rect x="410" y="360" width="300" height="110" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
+<text x="560" y="408.5" font-size="18" text-anchor="middle" font-weight="650">Media metadata soft-delete</text>
+<text x="560" y="433.5" font-size="18" text-anchor="middle" font-weight="400">ayrı DB transaction</text>
+</g>
+<path d="M 1190 470 L 1190 590" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="1190" y="535" font-size="15" text-anchor="middle" font-weight="400">xeyr</text>
+<g>
+<rect x="960" y="590" width="395" height="140" rx="12" fill="#fffbeb" stroke="#d97706" stroke-width="1.8"/>
+<text x="1157.5" y="628.5" font-size="18" text-anchor="middle" font-weight="650">MediaCleanupPendingException</text>
+<text x="1157.5" y="653.5" font-size="18" text-anchor="middle" font-weight="400">metadata active qalır</text>
+<text x="1157.5" y="678.5" font-size="18" text-anchor="middle" font-weight="400">attachment artıq yoxdur</text>
+<text x="1157.5" y="703.5" font-size="18" text-anchor="middle" font-weight="400">warning: safe UUID</text>
+</g>
+<path d="M 560 470 L 560 590" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<g>
+<path d="M 560 590 L 770 645 L 560 700 L 350 645 Z" fill="#fffbeb" stroke="#d97706" stroke-width="1.8"/>
+<text x="560" y="651" font-size="17" text-anchor="middle" font-weight="650">Metadata delete uğurlu?</text>
+</g>
+<path d="M 350 645 L 80 645" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="220" y="630" font-size="15" text-anchor="middle" font-weight="400">bəli</text>
+<g>
+<rect x="45" y="735" width="330" height="100" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
+<text x="210" y="766" font-size="18" text-anchor="middle" font-weight="650">Tamamlandı</text>
+<text x="210" y="791" font-size="18" text-anchor="middle" font-weight="400">DB metadata soft-deleted</text>
+<text x="210" y="816" font-size="18" text-anchor="middle" font-weight="400">binary silinib</text>
+</g>
+<path d="M 80 645 L 80 735" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 560 700 L 560 765" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="560" y="740" font-size="15" text-anchor="middle" font-weight="400">xeyr</text>
+<g>
+<rect x="410" y="765" width="440" height="100" rx="12" fill="#fff1f2" stroke="#e11d48" stroke-width="1.8"/>
+<text x="630" y="808.5" font-size="18" text-anchor="middle" font-weight="650">MediaStorageException + error log</text>
+<text x="630" y="833.5" font-size="18" text-anchor="middle" font-weight="400">binary artıq silinib; metadata qalır</text>
+</g>
+<g>
+<rect x="45" y="915" width="1310" height="76" rx="12" fill="#f1f5f9" stroke="#64748b" stroke-width="1.8"/>
+<text x="700" y="946.5" font-size="18" text-anchor="middle" font-weight="650">Cleanup üçün avtomatik worker/command yoxdur; retained metadata saxlanması automatic retry demək deyil.</text>
+<text x="700" y="971.5" font-size="18" text-anchor="middle" font-weight="400">Gözlənilməz storage error-u user-ə raw message/path çıxarmır; association rollback vədi verilmir.</text>
+</g>
+<text x="36" y="1027" font-size="14" text-anchor="start" font-weight="400">TaskFlow • cari kodun izahı • bütöv repo müqaviləsi üçün docs-ibp</text>
+</svg>

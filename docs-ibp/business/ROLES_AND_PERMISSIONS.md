@@ -1,5 +1,15 @@
 # Rollar və səlahiyyətlər
 
+## Əvvəl bir nümunə
+
+Muradın qlobal rolu `member` ola bilər, amma PAY layihəsində ona `manager` rolu verilə bilər. Onda Murad PAY layihəsini idarə edə bilər; bu, onun bütün təşkilat üzrə admin olması demək deyil. Başqa bir layihədə üzv deyilsə həmin layihəyə görünürlük də əldə etmir.
+
+**Görmək** və **dəyişmək** eyni icazə deyil. Layihə üzvü başqasına assign olunmuş işi görə bilər, amma assignee və ya manager olmadan onun statusunu dəyişə bilməz. Watcher olmaq da əlavə edit hüququ vermir.
+
+Aşağıdakı cədvəldə «Bəli»ni həmişə son sütundakı şərtlə birlikdə oxu. Məsələn, layihə manager-i olmaq archived layihəni adi edit ilə dəyişməyə icazə vermir.
+
+Sözlərin ayrı-ayrı izahı: [role, permission, policy, ability](../extended/roles-permissions-policies-abilities.md). Request zamanı bu yoxlamaların ardıcıllığı: [authorization axını](../diagrams/flows/authorization.md).
+
 ## İki səviyyəli rol modeli
 
 Qlobal rol təşkilat səviyyəli geniş capability-ni, layihə rolu isə konkret layihədə authority-ni müəyyən edir. Spatie permission policy-yə daxil olmağa imkan verir; son qərarı account statusu, layihə üzvlüyü, project statusu və record əlaqəsi ilə Policy/Gate verir.
@@ -30,7 +40,8 @@ Admin bütün layihələr üçün idarəçi kontekstinə malikdir. Layihə owner
 | İstifadəçi yarat/suspend/reactivate/reset | Bəli | Xeyr | Xeyr | Son aktiv admin qorunur |
 | Layihə yarat | Bəli | Bəli | Xeyr | Aktiv hesab |
 | Layihəyə bax | Bəli | Üzvdürsə | Üzvdürsə | Removed/suspended actor dərhal itirir |
-| Layihə detail/lifecycle/member idarəsi | Bəli | Layihədə managerdirsə | Layihədə managerdirsə | Archived terminal, completed read-only |
+| Layihə detail/member idarəsi | Bəli | Layihədə managerdirsə | Layihədə managerdirsə | Yalnız draft və active |
+| Layihə lifecycle keçidi | Bəli | Layihədə managerdirsə | Layihədə managerdirsə | Yalnız status cədvəlindəki keçidlər; archived terminal |
 | Work item yarat | Bəli | Active layihədə üzvdürsə | Active layihədə üzvdürsə | İlkin status/rank serverindir |
 | Work item detail edit | Bəli | Layihə manager-i | Reporter və yalnız backlog/todo | Project active olmalıdır |
 | Work item soft-delete | Bəli | Layihə manager-i | Xeyr | Project active olmalıdır |
@@ -61,7 +72,11 @@ Ability yalnız route ailəsini daraldır. Token-də ability olsa belə Spatie p
 ## Hesab və layihə vəziyyətinin təsiri
 
 - `suspended` actor Web/API giriş edə bilməz və recipient/assignee/watcher ola bilməz.
-- `draft` layihə work item mutasiyası qəbul etmir.
-- `completed` və `archived` layihələr read-only-dir.
+- `draft` layihədə detail və üzv hazırlığı mümkündür; iş/label/şərh/watcher/media mutasiyası mümkün deyil.
+- `completed` layihədə detail/member/iş dəyişmir, amma manager `active` və ya `archived` keçidini edə bilər. `archived` heç bir lifecycle keçidi qəbul etmir.
 - Üzvlük silinməsi görünürlük və watcher access-i dərhal ləğv edir, tarixçəni silmir.
+
+Buradakı «Project manager» sütunu qlobal rolu göstərir; həmin istifadəçinin konkret layihədə `manager` olması ayrıca şərtdir. Səlahiyyətin hesablanması üçün kod: `Modules/Projects/app/Services/ProjectMemberService.php::canParticipate/canManage`, `Modules/Projects/app/Policies/ProjectPolicy.php` və `Modules/Tasks/app/Policies/TaskPolicy.php`.
+
+Sadə müqayisə: [rol, permission, policy və ability](../extended/roles-permissions-policies-abilities.md).
 

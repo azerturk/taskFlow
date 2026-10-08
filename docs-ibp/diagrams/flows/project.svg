@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xml:lang="az" width="1320" height="900" viewBox="0 0 1320 900" role="img" aria-labelledby="title desc">
+<title id="title">Layihə lifecycle və draft hazırlığı</title>
+<desc id="desc">Draft-da detail və üzvlük hazırlanır; task/label/comment/media işi active tələb edir.</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M 0 0 L 10 5 L 0 10 Z" fill="#64748b"/>
+</marker>
+</defs>
+<style>text{font-family:Segoe UI,Arial,sans-serif;fill:#0f172a}path,rect,ellipse{vector-effect:non-scaling-stroke}</style>
+<rect width="1320" height="900" fill="#ffffff"/>
+<text x="36" y="47" font-size="29" text-anchor="start" font-weight="700">Layihə lifecycle və draft hazırlığı</text>
+<text x="36" y="77" font-size="16" text-anchor="start" font-weight="400">Draft-da detail və üzvlük hazırlanır; task/label/comment/media işi active tələb edir.</text>
+<path d="M 335 260 L 485 260" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="410" y="245" font-size="15" text-anchor="middle" font-weight="400">activate</text>
+<path d="M 735 260 L 885 260" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="810" y="245" font-size="15" text-anchor="middle" font-weight="400">complete</text>
+<path d="M 1010 315 L 1010 380 L 610 380 L 610 315" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="805" y="365" font-size="15" text-anchor="middle" font-weight="400">reopen</text>
+<path d="M 210 315 L 210 520 L 495 520" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="345" y="505" font-size="15" text-anchor="middle" font-weight="400">archive</text>
+<path d="M 610 315 L 610 465" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 1010 315 L 1010 520 L 745 520" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="875" y="505" font-size="15" text-anchor="middle" font-weight="400">archive</text>
+<g>
+<rect x="85" y="205" width="250" height="110" rx="12" fill="#fffbeb" stroke="#d97706" stroke-width="1.8"/>
+<text x="210" y="253.5" font-size="18" text-anchor="middle" font-weight="650">draft</text>
+<text x="210" y="278.5" font-size="18" text-anchor="middle" font-weight="400">detail + membership setup</text>
+</g>
+<g>
+<rect x="485" y="205" width="250" height="110" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
+<text x="610" y="253.5" font-size="18" text-anchor="middle" font-weight="650">active</text>
+<text x="610" y="278.5" font-size="18" text-anchor="middle" font-weight="400">məhsul mutasiyaları</text>
+</g>
+<g>
+<rect x="885" y="205" width="250" height="110" rx="12" fill="#f1f5f9" stroke="#64748b" stroke-width="1.8"/>
+<text x="1010" y="253.5" font-size="18" text-anchor="middle" font-weight="650">completed</text>
+<text x="1010" y="278.5" font-size="18" text-anchor="middle" font-weight="400">read-only</text>
+</g>
+<g>
+<rect x="495" y="465" width="250" height="110" rx="12" fill="#f1f5f9" stroke="#64748b" stroke-width="1.8"/>
+<text x="620" y="513.5" font-size="18" text-anchor="middle" font-weight="650">archived</text>
+<text x="620" y="538.5" font-size="18" text-anchor="middle" font-weight="400">terminal; çıxış yoxdur</text>
+</g>
+<g>
+<rect x="85" y="110" width="1050" height="51" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="610" y="141.5" font-size="18" text-anchor="middle" font-weight="650">Create transaction: project(draft) + owner(manager) membership + Activity</text>
+</g>
+<g>
+<rect x="75" y="640" width="550" height="101" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="350" y="671.5" font-size="18" text-anchor="middle" font-weight="650">Owner silinmir və demote edilmir.</text>
+<text x="350" y="696.5" font-size="18" text-anchor="middle" font-weight="400">Member removal: açıq assignment varsa 409.</text>
+<text x="350" y="721.5" font-size="18" text-anchor="middle" font-weight="400">Uğurda project watcher-ləri təmizlənir.</text>
+</g>
+<g>
+<rect x="685" y="640" width="550" height="101" rx="12" fill="#f1f5f9" stroke="#64748b" stroke-width="1.8"/>
+<text x="960" y="671.5" font-size="18" text-anchor="middle" font-weight="650">Soft-delete olunmamış iş varsa key kilidlidir.</text>
+<text x="960" y="696.5" font-size="18" text-anchor="middle" font-weight="400">Completed → active/archived mümkündür.</text>
+<text x="960" y="721.5" font-size="18" text-anchor="middle" font-weight="400">Lifecycle özü task statuslarını dəyişmir.</text>
+</g>
+<text x="36" y="877" font-size="14" text-anchor="start" font-weight="400">TaskFlow • cari kodun izahı • bütöv repo müqaviləsi üçün docs-ibp</text>
+</svg>

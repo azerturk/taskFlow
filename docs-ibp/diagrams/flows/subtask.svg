@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xml:lang="az" width="1240" height="900" viewBox="0 0 1240 900" role="img" aria-labelledby="title desc">
+<title id="title">Bir səviyyəli subtask sərhədi</title>
+<desc id="desc">Parent eyni project-də task, bug və ya story olmalıdır; subtask parent ola bilməz.</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M 0 0 L 10 5 L 0 10 Z" fill="#64748b"/>
+</marker>
+</defs>
+<style>text{font-family:Segoe UI,Arial,sans-serif;fill:#0f172a}path,rect,ellipse{vector-effect:non-scaling-stroke}</style>
+<rect width="1240" height="900" fill="#ffffff"/>
+<text x="36" y="47" font-size="29" text-anchor="start" font-weight="700">Bir səviyyəli subtask sərhədi</text>
+<text x="36" y="77" font-size="16" text-anchor="start" font-weight="400">Parent eyni project-də task, bug və ya story olmalıdır; subtask parent ola bilməz.</text>
+<path d="M 620 250 L 300 360" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 620 250 L 930 360" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 300 455 L 300 560" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" stroke-dasharray="7 5" marker-end="url(#arrow)"/>
+<text x="300" y="530" font-size="15" text-anchor="middle" font-weight="400">qadağandır</text>
+<g>
+<rect x="430" y="135" width="380" height="115" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="620" y="173.5" font-size="18" text-anchor="middle" font-weight="650">Parent: task / bug / story</text>
+<text x="620" y="198.5" font-size="18" text-anchor="middle" font-weight="400">project: PAY</text>
+<text x="620" y="223.5" font-size="18" text-anchor="middle" font-weight="400">öz assignee-si ola bilər</text>
+</g>
+<g>
+<rect x="140" y="360" width="320" height="95" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
+<text x="300" y="401" font-size="18" text-anchor="middle" font-weight="650">Subtask A</text>
+<text x="300" y="426" font-size="18" text-anchor="middle" font-weight="400">project: PAY; parent_id</text>
+</g>
+<g>
+<rect x="770" y="360" width="320" height="95" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
+<text x="930" y="401" font-size="18" text-anchor="middle" font-weight="650">Subtask B</text>
+<text x="930" y="426" font-size="18" text-anchor="middle" font-weight="400">project: PAY; parent_id</text>
+</g>
+<g>
+<rect x="140" y="560" width="320" height="90" rx="12" fill="#fff1f2" stroke="#e11d48" stroke-width="1.8"/>
+<text x="300" y="598.5" font-size="18" text-anchor="middle" font-weight="650">Sub-subtask yoxdur</text>
+<text x="300" y="623.5" font-size="18" text-anchor="middle" font-weight="400">cycle yoxdur</text>
+</g>
+<g>
+<rect x="610" y="530" width="530" height="101" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="875" y="561.5" font-size="18" text-anchor="middle" font-weight="650">Create/update zamanı validateParent:</text>
+<text x="875" y="586.5" font-size="18" text-anchor="middle" font-weight="400">parent var? eyni project? özüm deyil?</text>
+<text x="875" y="611.5" font-size="18" text-anchor="middle" font-weight="400">parent subtask deyil?</text>
+</g>
+<rect x="55" y="700" width="1130" height="120" rx="18" fill="#fffbeb" stroke="#d97706" stroke-dasharray="7 5"/>
+<text x="75" y="729" font-size="17" text-anchor="start" font-weight="650">Parent-i done etmək</text>
+<g>
+<rect x="80" y="745" width="530" height="55" rx="12" fill="#fffbeb" stroke="#d97706" stroke-width="1.8"/>
+<text x="345" y="778.5" font-size="18" text-anchor="middle" font-weight="650">hasOpenSubtasks: done/cancelled xaric child</text>
+</g>
+<path d="M 610 772 L 705 772" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="655" y="755" font-size="15" text-anchor="middle" font-weight="400">varsa</text>
+<g>
+<rect x="705" y="735" width="455" height="75" rx="12" fill="#fff1f2" stroke="#e11d48" stroke-width="1.8"/>
+<text x="932.5" y="766" font-size="18" text-anchor="middle" font-weight="650">409 invalid_task_status_transition</text>
+<text x="932.5" y="791" font-size="18" text-anchor="middle" font-weight="400">parent hələ done olmur</text>
+</g>
+<text x="36" y="877" font-size="14" text-anchor="start" font-weight="400">TaskFlow • cari kodun izahı • bütöv repo müqaviləsi üçün docs-ibp</text>
+</svg>

@@ -1,5 +1,23 @@
 # İstifadəçi axınları
 
+## Axın / flow nə deməkdir?
+
+Axın bir məqsədə çatmaq üçün addımların ardıcıllığıdır. Məsələn, «bug-u icraya götürmək» sadəcə bir button klikləmək deyil: giriş yoxlanır, iş tapılır, icazə və version yoxlanır, status/rank/tarixçə yazılır, nəticə göstərilir.
+
+Bu sənəd istifadəçinin gördüyü ardıcıllığı qısa saxlayır. Hər flow-un geniş dərsi [diagram indeksində](../diagrams/README.md) ayrıca fayldadır. Dərsdə əvvəl məqsəd və nümunə, sonra qutuların izahı, real kod və xəta halı verilir.
+
+İlk dəfə oxuyursansa [junior hekayəsindən](../JUNIOR_START.md) başla. Sonra bir axını seçib əvvəldən axıra izlə; bütün sistemin kodunu eyni anda açmaq lazım deyil.
+
+### Axın seçmək üçün
+
+- Hesaba girə bilmirsən: [session](../diagrams/flows/session.md) və [suspend](../diagrams/flows/account-admin.md).
+- Layihə hazırlayırsan: [project lifecycle və üzvlər](../diagrams/flows/project.md).
+- Yeni iş və ya subtask yaradırsan: [task create](../diagrams/flows/task-create.md), [subtask](../diagrams/flows/subtask.md).
+- İcra/sıralama fərqini öyrənirsən: [assignment](../diagrams/flows/assignment.md), [status](../diagrams/flows/status.md), [reorder](../diagrams/flows/reorder.md).
+- Şərh, watcher, notification və tarixçəni ayırırsan: [əməkdaşlıq](../diagrams/flows/collaboration.md), [Activity](../diagrams/flows/activity.md).
+- Faylla işləyirsən: [upload](../diagrams/flows/media-upload.md), [stream](../diagrams/flows/media-stream.md), [delete](../diagrams/flows/media-delete.md).
+- API ilə daxil olursan: [PAT](../diagrams/flows/pat.md), [authorization](../diagrams/flows/authorization.md).
+
 ## Giriş və hesab lifecycle
 
 1. Administrator daxili istifadəçini ad, normallaşdırılmış e-poçt, parol və bir qlobal rol ilə yaradır.
@@ -11,11 +29,11 @@
 ## Layihə lifecycle
 
 1. Admin və ya `project_manager` layihəni yaradır; layihə `draft` olur və creator owner/manager kimi əlavə edilir.
-2. Manager active istifadəçiləri layihəyə `manager` və ya `member` kimi əlavə edir.
+2. Manager hələ `draft` ikən active istifadəçiləri layihəyə `manager` və ya `member` kimi əlavə edir, layihə detallarını hazırlayır. Bu əməliyyatlar `active` vəziyyətində də mümkündür.
 3. Manager layihəni `active` edir.
 4. Komanda work item, label, comment, watcher və media axınlarından istifadə edir.
-5. Manager layihəni `completed` edir; bütün mutasiyalar dayanır.
-6. Lazım olarsa manager completed layihəni yenidən `active` edir.
+5. Manager layihəni `completed` edir; detail, üzv və iş/əməkdaşlıq dəyişiklikləri dayanır.
+6. Lazım olarsa manager completed layihəni yenidən `active` edir və ya `archived` vəziyyətinə keçirir. Lifecycle keçidi read-only qaydasının ayrıca, icazəli istisnasıdır.
 7. Archive terminal read-only vəziyyətdir.
 
 ## İşin report edilməsi və icrası
@@ -53,8 +71,8 @@
 1. İstifadəçi bir request-də ən çox 5 fayl seçir.
 2. Sistem hamısını saxlamadan əvvəl count, size, content, MIME/extension və image ölçülərinə görə yoxlayır.
 3. Media random private path-də saxlanır, metadata Media modulunda, Task–Media əlaqəsi Tasks modulunda yaranır.
-4. Hər hansı addım uğursuz olsa həmin batch tam kompensasiya olunur.
-5. Authorized istifadəçi image/PDF preview və bütün tiplər üçün download edir.
+4. Yazı uğursuz olsa DB batch rollback edilir və saxlanmış faylların cleanup-ı cəhd edilir. Cleanup da alınmasa retry üçün əlaqəsiz metadata saxlamaq cəhd edilir, pending xəta/log yaranır; bu, bütün fiziki faylların mütləq artıq silindiyi demək deyil.
+5. İcazəli istifadəçi image/PDF üçün inline preview, bütün icazəli tiplər üçün download edir. Başqa tipin preview endpoint-i download fallback-ı verir.
 6. Uploader və ya manager active layihədə attachment-i silir; fiziki silinmə alınmasa retry üçün safe UUID-li aktiv Media metadata qalır.
 
 ## Dashboard və Activity
@@ -71,4 +89,10 @@
 3. Protected request Bearer token, active account, ability, permission və policy yoxlamalarından keçir.
 4. `GET /api/v1/me` cari actor-u qaytarır.
 5. `DELETE /api/v1/auth/token` yalnız cari token-i ləğv edir və 204 qaytarır.
+
+## R1 laboratoriya axını
+
+Bu axın UI/HTTP endpoint deyil. `LearningEntryService::publish()` title-ı yoxlanmış DTO ilə Catalog-a qeyd yazır. `LearningEntryPublished` yalnız faktiki outer commit-dən sonra sinxron listener-ə çatır. Insights çatışmayan projection-u əlavə edir. Outer rollback olarsa listener işləmir. Listener commit-dən sonra xəta atarsa Catalog qeydi qalır; `RebuildLearningInsightsService::rebuild()` public feed üzərindən çatışmayan projection-ları bərpa edir. Ətraflı: [R1 laboratoriyası](../labs/r1/README.md).
+
+Uğur və xəta budaqları: [diagram xəritəsi](../diagrams/README.md). Transaction-un nəyi geri qaytardığı: [transaction və xətalar](../technical/TRANSACTIONS_AND_FAILURES.md).
 

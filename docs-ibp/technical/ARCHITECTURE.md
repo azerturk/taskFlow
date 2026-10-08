@@ -1,8 +1,18 @@
 # Texniki arxitektura
 
+## Junior üçün: arxitektura nəyi izah edir?
+
+Arxitektura yalnız folder adları deyil. «Bu qaydanı kim qoruyur, hansı hissə hansı hissəni çağıra bilər, dəyişiklik zamanı nəyə toxunmamalıyıq?» suallarının cavabıdır.
+
+Məsələn, status button-u request göndərir. Controller gələn istəyi uyğun application çağırışına çevirir. Service icazəli vəziyyət dəyişikliyini və onun bütöv nəticəsini idarə edir. Repository database əməliyyatını yerinə yetirir. Blade/Resource hazır nəticəni göstərir. Hər hissə bütün işi özündə etmədiyi üçün qaydanı Web/API/Livewire üçün təkrar yazmaq lazım gəlmir.
+
+**Modular monolith** ayrıca məsuliyyətləri olan modulların bir tətbiq kimi işləməsidir. Ayrı folder avtomatik ayrı server, ayrı database və ya tam müstəqillik demək deyil. Cari məhsulda məqsədli direct dependency-lər var; R1 laboratoriyası isə başqa əlaqə üsullarını kiçik nümunədə göstərir.
+
+Əvvəl [sistemin ümumi izahını](../diagrams/system/context.md), sonra [request qatlarının dərsini](../diagrams/system/request-layers.md), daha sonra [dependency xəritəsini](../diagrams/system/dependencies.md) oxu. Aşağıdakı hissələr həmin sadə izahların texniki müqaviləsidir.
+
 ## Sistem forması
 
-TaskFlow Laravel 13 və PHP 8.3+ üzərində qurulmuş modular monolith-dir. Tətbiq bir verilənlər bazası və bir deploy vahidi istifadə edir. Modullar `nwidart/laravel-modules` ilə qeydiyyatdan keçir; frontend Blade, Tailwind CSS, Vite və vanilla JavaScript-dir.
+TaskFlow Laravel 13 üzərində qurulmuş modular monolith-dir: modul sərhədləri olan, amma bir tətbiq kimi yayımlanan sistem. Tətbiq bir verilənlər bazası və bir deploy vahidi istifadə edir. Modullar `nwidart/laravel-modules` ilə qeydiyyatdan keçir; frontend Blade, Tailwind CSS, Vite və vanilla JavaScript-dir. `composer.json` runtime üçün PHP `^8.3` bildirir; cari locked test alətləri ilə development üçün PHP **8.4.1+** lazımdır ([mühit](ENVIRONMENT.md)).
 
 ```text
 Host application
@@ -13,15 +23,21 @@ Host application
 ├── shared layout, middleware, Gate və rate limit
 └── qlobal exception rendering
 
-Modules
+Məhsul modulları
 ├── Projects
 ├── Tasks
 ├── Media
 ├── Activity
 └── Dashboard
+
+İzolyasiya edilmiş R1 tədris modulları
+├── LearningCatalog
+└── LearningInsights
 ```
 
 `Api`, `Web`, `Auth`, `Users`, `Core`, `Shared`, `Labels`, `Board` və `Notifications` adlı ayrıca modullar yoxdur.
+
+İki learning modulu beş məhsul modulunun refaktoru deyil. Onların `routes`, controller, Livewire və Blade səthi yoxdur. Məhsul/host learning modullarını çağırmır, learning modulları da məhsul/host-a müraciət etmir. Ayrı `r1_*` cədvəlləri istifadə edirlər. Quruluş və real axınlar [diagram xəritəsində](../diagrams/README.md) göstərilir.
 
 ## Request axını
 
@@ -40,6 +56,8 @@ Route
 
 Controller adapterdir. Authorization və DTO-dan sonra hər action bir application boundary çağırır. Controller və Livewire repository inject etmir, Eloquent/relationship query, `load()`, transaction, workflow, membership, `DB` və `Storage` əməliyyatı etmir.
 
+Validation üçün cari praktik istisna var: project key və admin user email unikallığı dörd Form Request-də Laravel `unique`/`Rule::unique` presence rule-u ilə yoxlanır. Buna görə hazırkı bütün request validation-ı «heç DB oxumur» kimi təqdim etmək doğru deyil. Bu rule-lar service workflow/policy qərarının və DB UNIQUE constraint-inin əvəzi deyil. Konkret fayllar [təhlükəsizlik sənədində](SECURITY.md) göstərilir.
+
 ## Application service-lər
 
 - Mutation service use case orchestration, domain invariant, transaction və Activity sahibidir.
@@ -56,7 +74,7 @@ Controller adapterdir. Authorization və DTO-dan sonra hər action bir applicati
 - task create = locked project sequence + rank + task + labels/watchers + Activity;
 - assignment = membership + version + auto-watch + Activity + notification;
 - status = version/transition + timestamps + target-column rank + Activity + notification;
-- media batch = storage ledger + metadata + association + Activity + tam compensation.
+- media batch = storage ledger + metadata/association/Activity DB transaction-u + failure-da compensation cəhdi; cleanup failure ayrıca pending metadata/log ilə görünür.
 
 ## Repository-lər
 
@@ -78,6 +96,8 @@ Repository qatının sahibliyi:
 - row lock, issue sequence və rank/concurrency əməliyyatları.
 
 Contract Eloquent `Builder` və relation builder qaytarmır. Nəticə model, collection, paginator, scalar aggregate və ya readonly read model-dir.
+
+Sadə nümunə: `TaskStatusService::change()` icazəli keçidi və versiyanı yoxlayır; `EloquentTaskRepository::lockForRankMutation()` məlumatı lock ilə alır; `TaskResource` artıq hazırlanmış nəticəni JSON-a çevirir. Eyni query-ni controller-də qurmaq bu məsuliyyət bölgüsünü pozardı.
 
 ## Presentation sərhədi
 
@@ -107,6 +127,8 @@ Route binding əvvəl ability-ni, sonra actor-visible scope-u tətbiq edir. Nest
 | Binary, private path, MIME, checksum, stream və fiziki cleanup | Media |
 | Canonical audit event, sanitizer, scoped history | Activity |
 | Aggregate/read queue və QuickTaskCreate presentation | Dashboard |
+| Published learning entry və üç açıq PHP type | LearningCatalog — yalnız laboratoriya |
+| Learning projection, listener və missing-only rebuild | LearningInsights — yalnız laboratoriya |
 
 Ətraflı sərhədlər [`../modules`](../modules) sənədlərindədir.
 
@@ -141,7 +163,19 @@ Dashboard -> Projects, Tasks, Activity
 Host      -> Projects, Tasks, Activity
 ```
 
-Bu explicit asılılıqlar cari modular monolith üçün qəbul edilib və architecture test-ləri ilə allowlist olunur. Contract/event ilə loose coupling refaktoru yalnız [`ROADMAP.md`](../../ROADMAP.md) mövzusudur.
+Bu birbaşa asılılıqlar cari məhsul üçün qəbul edilib və architecture test-ləri ilə icazəli siyahıya salınıb. Mövcud məhsulu contract/event arxasına keçirmək hələ [`ROADMAP.md`](../../ROADMAP.md) mövzusudur. R1 laboratoriyasında isə artıq məhdud contract/event praktikası var; bunu məhsula tətbiq edilmiş refaktor kimi oxumaq olmaz.
+
+## R1 laboratoriyasının əlaqələri
+
+```text
+LearningCatalog -- LearningEntryPublished --> LearningInsights listener
+LearningInsights -- PublishedLearningEntryFeed::all() --> LearningCatalog
+                       list<PublishedLearningEntryData>
+```
+
+Catalog Insights-ı tanımır. Insights Catalog-un yalnız `PublishedLearningEntryFeed`, `PublishedLearningEntryData` və `LearningEntryPublished` type-larını istifadə edir; model, repository, publish service və input DTO açıq səth deyil. Bu **daxili PHP public API**-sidir, `/api/v1` HTTP REST API-si deyil.
+
+Publish insert-i öz transaction-ında tamamlayır, sonra `ShouldDispatchAfterCommit` event-i dispatch edir. Outer transaction varsa listener ən xarici commit-i gözləyir; yoxdursa dərhal, eyni prosesdə işləyir. Listener queue-da deyil. Rebuild əvvəl public feed-i alır, sonra yalnız öz projection yazılarını bir transaction-da edir. Nə outbox/inbox, nə avtomatik retry, nə də modul silmə mexanizmi var. Detallar [R1](../labs/r1/README.md) və [transaction/xəta davranışında](TRANSACTIONS_AND_FAILURES.md) verilir.
 
 ## Error arxitekturası
 
@@ -150,4 +184,8 @@ Gözlənilən domain vəziyyətləri məqsədli exception-larla 409 və ya 422-y
 ## Enforcement
 
 Architecture test-ləri controller/Livewire repository istifadəsini, qat xarici Eloquent/DB/Storage query-lərini, Builder leakage-i, raw model API return-u, təhlükəli exception mapping-i, təsdiqlənməmiş module dependency və Livewire component-i, Tasks daxilində fiziki file ownership-i və path separator bypass-larını rədd edir.
+
+`tests/Architecture/Support/SourceGuard.php` məhsul, `LearningBoundaryGuard.php` isə learning sərhədlərinin məqsədli statik guard-ıdır. `R1LearningBoundaryTest.php` public type allowlist-i, əks production dependency-ni, cədvəl sahibliyini, qatları və UI/route yoxluğunu müsbət/mənfi fixture-lərlə yoxlayır. Bu, bütün PHP dinamik davranışını sübut edən ümumi analizator deyil; runtime feature/integration testlərini əvəz etmir.
+
+Kodda istiqamət tapmaq üçün: [kodbaza bələdçisi](CODEBASE_GUIDE.md).
 

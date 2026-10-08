@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xml:lang="az" width="1400" height="1160" viewBox="0 0 1400 1160" role="img" aria-labelledby="title desc">
+<title id="title">Multi-file upload və kompensasiya</title>
+<desc id="desc">DB transaction private storage write-ını avtomatik geri almır; Media explicit cleanup edir.</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M 0 0 L 10 5 L 0 10 Z" fill="#64748b"/>
+</marker>
+</defs>
+<style>text{font-family:Segoe UI,Arial,sans-serif;fill:#0f172a}path,rect,ellipse{vector-effect:non-scaling-stroke}</style>
+<rect width="1400" height="1160" fill="#ffffff"/>
+<text x="36" y="47" font-size="29" text-anchor="start" font-weight="700">Multi-file upload və kompensasiya</text>
+<text x="36" y="77" font-size="16" text-anchor="start" font-weight="400">DB transaction private storage write-ını avtomatik geri almır; Media explicit cleanup edir.</text>
+<path d="M 365 210 L 450 210" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 890 210 L 1000 210" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 1190 270 L 1190 355" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<g>
+<rect x="45" y="155" width="320" height="115" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="205" y="193.5" font-size="18" text-anchor="middle" font-weight="650">Tasks: authorization</text>
+<text x="205" y="218.5" font-size="18" text-anchor="middle" font-weight="400">active project + upload permission</text>
+<text x="205" y="243.5" font-size="18" text-anchor="middle" font-weight="400">ən çox 5 fayl / request</text>
+</g>
+<g>
+<rect x="450" y="155" width="440" height="115" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
+<text x="670" y="193.5" font-size="18" text-anchor="middle" font-weight="650">Media: əvvəl hamısını validate et</text>
+<text x="670" y="218.5" font-size="18" text-anchor="middle" font-weight="400">10 MB/fayl; detected MIME / extension</text>
+<text x="670" y="243.5" font-size="18" text-anchor="middle" font-weight="400">image limit; safe name; checksum</text>
+</g>
+<g>
+<rect x="1000" y="155" width="355" height="115" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
+<text x="1177.5" y="193.5" font-size="18" text-anchor="middle" font-weight="650">Private storage write</text>
+<text x="1177.5" y="218.5" font-size="18" text-anchor="middle" font-weight="400">random UUID path</text>
+<text x="1177.5" y="243.5" font-size="18" text-anchor="middle" font-weight="400">stored-items ledger</text>
+</g>
+<rect x="370" y="345" width="985" height="250" rx="18" fill="#eff6ff" stroke="#2563eb" stroke-dasharray="7 5"/>
+<text x="390" y="374" font-size="17" text-anchor="start" font-weight="650">Sonra: DB transaction</text>
+<path d="M 780 470 L 890 470" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<g>
+<rect x="410" y="415" width="370" height="110" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
+<text x="595" y="463.5" font-size="18" text-anchor="middle" font-weight="650">Media metadata register</text>
+<text x="595" y="488.5" font-size="18" text-anchor="middle" font-weight="400">transaction-neutral collaborator</text>
+</g>
+<g>
+<rect x="890" y="415" width="425" height="110" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="1102.5" y="451" font-size="18" text-anchor="middle" font-weight="650">Tasks association + Activity</text>
+<text x="1102.5" y="476" font-size="18" text-anchor="middle" font-weight="400">hər media üçün attachment</text>
+<text x="1102.5" y="501" font-size="18" text-anchor="middle" font-weight="400">hamısı uğurlu → commit</text>
+</g>
+<path d="M 670 270 L 670 315 L 220 315 L 220 680" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="220" y="615" font-size="15" text-anchor="middle" font-weight="400">validate fail: write yoxdur</text>
+<g>
+<rect x="50" y="680" width="340" height="100" rx="12" fill="#fff1f2" stroke="#e11d48" stroke-width="1.8"/>
+<text x="220" y="723.5" font-size="18" text-anchor="middle" font-weight="650">Validation error</text>
+<text x="220" y="748.5" font-size="18" text-anchor="middle" font-weight="400">storage / DB yazılmır</text>
+</g>
+<path d="M 1190 595 L 1190 680" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="1190" y="647" font-size="15" text-anchor="middle" font-weight="400">DB failure</text>
+<path d="M 1355 210 L 1380 210 L 1380 730 L 1355 730" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" stroke-dasharray="7 5" marker-end="url(#arrow)"/>
+<g>
+<rect x="970" y="680" width="385" height="100" rx="12" fill="#fff1f2" stroke="#e11d48" stroke-width="1.8"/>
+<text x="1162.5" y="711" font-size="18" text-anchor="middle" font-weight="650">DB rollback (başlayıbsa)</text>
+<text x="1162.5" y="736" font-size="18" text-anchor="middle" font-weight="400">Media compensateStored</text>
+<text x="1162.5" y="761" font-size="18" text-anchor="middle" font-weight="400">bütün stored item-ları təmizlə</text>
+</g>
+<path d="M 970 730 L 690 730" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="830" y="713" font-size="15" text-anchor="middle" font-weight="400">physical cleanup uğurlu</text>
+<g>
+<rect x="490" y="680" width="200" height="100" rx="12" fill="#f1f5f9" stroke="#64748b" stroke-width="1.8"/>
+<text x="590" y="723.5" font-size="18" text-anchor="middle" font-weight="650">Tam cleanup</text>
+<text x="590" y="748.5" font-size="18" text-anchor="middle" font-weight="400">xəta ötürülür</text>
+</g>
+<path d="M 1160 780 L 1160 850" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="1160" y="825" font-size="15" text-anchor="middle" font-weight="400">cleanup alınmır</text>
+<g>
+<rect x="910" y="850" width="445" height="125" rx="12" fill="#fffbeb" stroke="#d97706" stroke-width="1.8"/>
+<text x="1132.5" y="893.5" font-size="18" text-anchor="middle" font-weight="650">Retain active Media metadata</text>
+<text x="1132.5" y="918.5" font-size="18" text-anchor="middle" font-weight="400">association olmadan retry üçün</text>
+<text x="1132.5" y="943.5" font-size="18" text-anchor="middle" font-weight="400">safe UUID + warning / pending error</text>
+</g>
+<g>
+<rect x="45" y="855" width="800" height="101" rx="12" fill="#f1f5f9" stroke="#64748b" stroke-width="1.8"/>
+<text x="445" y="886.5" font-size="18" text-anchor="middle" font-weight="650">Media DB-ni və faylı eyni atomic resource kimi təqdim etmir.</text>
+<text x="445" y="911.5" font-size="18" text-anchor="middle" font-weight="400">Metadata saxlamaq da fail edərsə critical log yazılır.</text>
+<text x="445" y="936.5" font-size="18" text-anchor="middle" font-weight="400">Avtomatik queue/retry worker bu flow-da yoxdur.</text>
+</g>
+<g>
+<rect x="45" y="1020" width="1310" height="76" rx="12" fill="#f1f5f9" stroke="#64748b" stroke-width="1.8"/>
+<text x="700" y="1051.5" font-size="18" text-anchor="middle" font-weight="650">Uğur: bütün batch media + association + Activity hazırdır. Failure: cleanup və ya açıq pending-cleanup vəziyyəti.</text>
+<text x="700" y="1076.5" font-size="18" text-anchor="middle" font-weight="400">Private path/checksum user output-a çıxmır; public disk URL yoxdur.</text>
+</g>
+<text x="36" y="1137" font-size="14" text-anchor="start" font-weight="400">TaskFlow • cari kodun izahı • bütöv repo müqaviləsi üçün docs-ibp</text>
+</svg>

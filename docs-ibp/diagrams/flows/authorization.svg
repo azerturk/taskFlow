@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xml:lang="az" width="1280" height="1000" viewBox="0 0 1280 1000" role="img" aria-labelledby="title desc">
+<title id="title">Authorization və safe record resolution</title>
+<desc id="desc">API ability denial record binding-dən əvvəl qərar verir; ID mövcudluğunu sızdırmır.</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M 0 0 L 10 5 L 0 10 Z" fill="#64748b"/>
+</marker>
+</defs>
+<style>text{font-family:Segoe UI,Arial,sans-serif;fill:#0f172a}path,rect,ellipse{vector-effect:non-scaling-stroke}</style>
+<rect width="1280" height="1000" fill="#ffffff"/>
+<text x="36" y="47" font-size="29" text-anchor="start" font-weight="700">Authorization və safe record resolution</text>
+<text x="36" y="77" font-size="16" text-anchor="start" font-weight="400">API ability denial record binding-dən əvvəl qərar verir; ID mövcudluğunu sızdırmır.</text>
+<path d="M 340 200 L 340 250" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 340 360 L 340 410" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 340 500 L 340 550" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 340 640 L 340 690" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 600 160 L 900 160" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="760" y="146" font-size="15" text-anchor="middle" font-weight="400">yoxdur / suspended</text>
+<path d="M 600 300 L 900 300" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="750" y="286" font-size="15" text-anchor="middle" font-weight="400">ability keçmir</text>
+<path d="M 600 455 L 900 455" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="750" y="441" font-size="15" text-anchor="middle" font-weight="400">hidden / wrong parent</text>
+<path d="M 600 595 L 900 595" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="750" y="581" font-size="15" text-anchor="middle" font-weight="400">permission / role keçmir</text>
+<path d="M 600 735 L 900 735" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="750" y="721" font-size="15" text-anchor="middle" font-weight="400">state invariant keçmir</text>
+<g>
+<rect x="80" y="120" width="520" height="80" rx="12" fill="#f1f5f9" stroke="#64748b" stroke-width="1.8"/>
+<text x="340" y="153.5" font-size="18" text-anchor="middle" font-weight="650">1. Authentication + active-user</text>
+<text x="340" y="178.5" font-size="18" text-anchor="middle" font-weight="400">Web session və ya Sanctum PAT</text>
+</g>
+<g>
+<path d="M 340 250 L 600 305 L 340 360 L 80 305 Z" fill="#fffbeb" stroke="#d97706" stroke-width="1.8"/>
+<text x="340" y="298.5" font-size="17" text-anchor="middle" font-weight="650">2. API ability uyğundur?</text>
+<text x="340" y="323.5" font-size="17" text-anchor="middle" font-weight="400">Web-də bu qat yoxdur</text>
+</g>
+<g>
+<rect x="80" y="410" width="520" height="90" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="340" y="448.5" font-size="18" text-anchor="middle" font-weight="650">3. Visible / nested binding</text>
+<text x="340" y="473.5" font-size="18" text-anchor="middle" font-weight="400">parent-scoped record tap</text>
+</g>
+<g>
+<rect x="80" y="550" width="520" height="90" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="340" y="588.5" font-size="18" text-anchor="middle" font-weight="650">4. Policy / Gate</text>
+<text x="340" y="613.5" font-size="18" text-anchor="middle" font-weight="400">capability + role + record əlaqəsi</text>
+</g>
+<g>
+<rect x="80" y="690" width="520" height="90" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
+<text x="340" y="728.5" font-size="18" text-anchor="middle" font-weight="650">5. Service invariantları</text>
+<text x="340" y="753.5" font-size="18" text-anchor="middle" font-weight="400">membership, lifecycle, parent, version</text>
+</g>
+<g>
+<rect x="900" y="120" width="280" height="80" rx="12" fill="#fff1f2" stroke="#e11d48" stroke-width="1.8"/>
+<text x="1040" y="166" font-size="18" text-anchor="middle" font-weight="650">401 / login redirect</text>
+</g>
+<g>
+<rect x="900" y="260" width="280" height="80" rx="12" fill="#fff1f2" stroke="#e11d48" stroke-width="1.8"/>
+<text x="1040" y="306" font-size="18" text-anchor="middle" font-weight="650">403</text>
+</g>
+<g>
+<rect x="900" y="415" width="280" height="80" rx="12" fill="#fff1f2" stroke="#e11d48" stroke-width="1.8"/>
+<text x="1040" y="461" font-size="18" text-anchor="middle" font-weight="650">Eyni safe 404</text>
+</g>
+<g>
+<rect x="900" y="555" width="280" height="80" rx="12" fill="#fff1f2" stroke="#e11d48" stroke-width="1.8"/>
+<text x="1040" y="601" font-size="18" text-anchor="middle" font-weight="650">403</text>
+</g>
+<g>
+<rect x="900" y="695" width="280" height="80" rx="12" fill="#fff1f2" stroke="#e11d48" stroke-width="1.8"/>
+<text x="1040" y="741" font-size="18" text-anchor="middle" font-weight="650">409 və ya məqsədli 422</text>
+</g>
+<path d="M 340 780 L 340 830" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<g>
+<rect x="80" y="830" width="520" height="70" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
+<text x="340" y="871" font-size="18" text-anchor="middle" font-weight="650">Authorized use case / read result</text>
+</g>
+<g>
+<rect x="670" y="850" width="510" height="76" rx="12" fill="#f1f5f9" stroke="#64748b" stroke-width="1.8"/>
+<text x="925" y="881.5" font-size="18" text-anchor="middle" font-weight="650">Input validation ayrıca 422 verə bilər.</text>
+<text x="925" y="906.5" font-size="18" text-anchor="middle" font-weight="400">Generic DB/runtime error → opaque 500.</text>
+</g>
+<text x="36" y="977" font-size="14" text-anchor="start" font-weight="400">TaskFlow • cari kodun izahı • bütöv repo müqaviləsi üçün docs-ibp</text>
+</svg>

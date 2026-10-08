@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xml:lang="az" width="1340" height="1020" viewBox="0 0 1340 1020" role="img" aria-labelledby="title desc">
+<title id="title">Board / backlog reorder və rank</title>
+<desc id="desc">Client qonşu intent göndərir; raw rank hesablamasını server edir.</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M 0 0 L 10 5 L 0 10 Z" fill="#64748b"/>
+</marker>
+</defs>
+<style>text{font-family:Segoe UI,Arial,sans-serif;fill:#0f172a}path,rect,ellipse{vector-effect:non-scaling-stroke}</style>
+<rect width="1340" height="1020" fill="#ffffff"/>
+<text x="36" y="47" font-size="29" text-anchor="start" font-weight="700">Board / backlog reorder və rank</text>
+<text x="36" y="77" font-size="16" text-anchor="start" font-weight="400">Client qonşu intent göndərir; raw rank hesablamasını server edir.</text>
+<rect x="45" y="120" width="360" height="390" rx="18" fill="#f1f5f9" stroke="#64748b" stroke-dasharray="7 5"/>
+<text x="65" y="149" font-size="17" text-anchor="start" font-weight="650">Əvvəl: eyni project / status</text>
+<g>
+<rect x="105" y="180" width="240" height="70" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="225" y="221" font-size="18" text-anchor="middle" font-weight="650">A — id:10</text>
+</g>
+<g>
+<rect x="105" y="285" width="240" height="70" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="225" y="326" font-size="18" text-anchor="middle" font-weight="650">C — id:30</text>
+</g>
+<g>
+<rect x="105" y="390" width="240" height="70" rx="12" fill="#fffbeb" stroke="#d97706" stroke-width="1.8"/>
+<text x="225" y="431" font-size="18" text-anchor="middle" font-weight="650">B — id:20</text>
+</g>
+<path d="M 405 320 L 510 320" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="455" y="295" font-size="15" text-anchor="middle" font-weight="400">B-ni araya qoy</text>
+<g>
+<rect x="510" y="230" width="330" height="180" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="675" y="288.5" font-size="18" text-anchor="middle" font-weight="650">Manager request</text>
+<text x="675" y="313.5" font-size="18" text-anchor="middle" font-weight="400">task:20; expected_version</text>
+<text x="675" y="338.5" font-size="18" text-anchor="middle" font-weight="400">before_task_id:10</text>
+<text x="675" y="363.5" font-size="18" text-anchor="middle" font-weight="400">after_task_id:30</text>
+</g>
+<path d="M 840 320 L 920 320" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="920" y="120" width="360" height="390" rx="18" fill="#ecfdf5" stroke="#059669" stroke-dasharray="7 5"/>
+<text x="940" y="149" font-size="17" text-anchor="start" font-weight="650">Sonra: canonical sıra</text>
+<g>
+<rect x="980" y="180" width="240" height="70" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
+<text x="1100" y="221" font-size="18" text-anchor="middle" font-weight="650">A → rank 1000</text>
+</g>
+<g>
+<rect x="980" y="285" width="240" height="70" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
+<text x="1100" y="326" font-size="18" text-anchor="middle" font-weight="650">B → rank 2000</text>
+</g>
+<g>
+<rect x="980" y="390" width="240" height="70" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
+<text x="1100" y="431" font-size="18" text-anchor="middle" font-weight="650">C → rank 3000</text>
+</g>
+<rect x="45" y="560" width="1235" height="280" rx="18" fill="#ecfdf5" stroke="#059669" stroke-dasharray="7 5"/>
+<text x="65" y="589" font-size="17" text-anchor="start" font-weight="650">TaskRankService + repository: vahid DB transaction</text>
+<path d="M 330 690 L 405 690" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 780 690 L 850 690" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<g>
+<rect x="80" y="625" width="250" height="120" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
+<text x="205" y="666" font-size="18" text-anchor="middle" font-weight="650">Project/task/column lock</text>
+<text x="205" y="691" font-size="18" text-anchor="middle" font-weight="400">manager + active yoxla</text>
+<text x="205" y="716" font-size="18" text-anchor="middle" font-weight="400">version yoxla</text>
+</g>
+<g>
+<rect x="405" y="625" width="375" height="120" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
+<text x="592.5" y="666" font-size="18" text-anchor="middle" font-weight="650">Qonşular eyni sütundadır?</text>
+<text x="592.5" y="691" font-size="18" text-anchor="middle" font-weight="400">Task çıxarıldıqdan sonra</text>
+<text x="592.5" y="716" font-size="18" text-anchor="middle" font-weight="400">bir-birinə bitişikdirlər?</text>
+</g>
+<g>
+<rect x="850" y="625" width="395" height="120" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="1047.5" y="666" font-size="18" text-anchor="middle" font-weight="650">Temporary rank → final rank</text>
+<text x="1047.5" y="691" font-size="18" text-anchor="middle" font-weight="400">silinmiş row rank-larını rezerv saxla</text>
+<text x="1047.5" y="716" font-size="18" text-anchor="middle" font-weight="400">moved task version +1; Activity</text>
+</g>
+<g>
+<rect x="80" y="775" width="1165" height="51" rx="12" fill="#fff1f2" stroke="#e11d48" stroke-width="1.8"/>
+<text x="662.5" y="806.5" font-size="18" text-anchor="middle" font-weight="650">Sıra dəyişmirsə no-op; invalid qonşu / stale version → conflict, rollback.</text>
+</g>
+<g>
+<rect x="45" y="875" width="1235" height="76" rx="12" fill="#f1f5f9" stroke="#64748b" stroke-width="1.8"/>
+<text x="662.5" y="906.5" font-size="18" text-anchor="middle" font-weight="650">Nümunədə reserved rank yoxdur; real rebalance soft-deleted row rank-larını da nəzərə alır.</text>
+<text x="662.5" y="931.5" font-size="18" text-anchor="middle" font-weight="400">Sütun dəyişmək status use case-idir. Assignee yalnız target sonuna append edir, reorder səlahiyyəti almır.</text>
+</g>
+<text x="36" y="997" font-size="14" text-anchor="start" font-weight="400">TaskFlow • cari kodun izahı • bütöv repo müqaviləsi üçün docs-ibp</text>
+</svg>

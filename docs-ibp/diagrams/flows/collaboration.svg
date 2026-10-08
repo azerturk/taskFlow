@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xml:lang="az" width="1360" height="1020" viewBox="0 0 1360 1020" role="img" aria-labelledby="title desc">
+<title id="title">Watch, comment və notification</title>
+<desc id="desc">Watcher subscription-dır; edit və browse səlahiyyəti yaratmır.</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M 0 0 L 10 5 L 0 10 Z" fill="#64748b"/>
+</marker>
+</defs>
+<style>text{font-family:Segoe UI,Arial,sans-serif;fill:#0f172a}path,rect,ellipse{vector-effect:non-scaling-stroke}</style>
+<rect width="1360" height="1020" fill="#ffffff"/>
+<text x="36" y="47" font-size="29" text-anchor="start" font-weight="700">Watch, comment və notification</text>
+<text x="36" y="77" font-size="16" text-anchor="start" font-weight="400">Watcher subscription-dır; edit və browse səlahiyyəti yaratmır.</text>
+<path d="M 380 205 L 500 205" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 380 405 L 500 405" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 380 605 L 500 605" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 675 460 L 675 550" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="710" y="505" font-size="15" text-anchor="middle" font-weight="400">notify</text>
+<path d="M 850 605 L 940 605 L 940 455 L 1030 455" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 1160 500 L 1160 650" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<g>
+<rect x="55" y="150" width="325" height="110" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="217.5" y="198.5" font-size="18" text-anchor="middle" font-weight="650">Watch / unwatch</text>
+<text x="217.5" y="223.5" font-size="18" text-anchor="middle" font-weight="400">self və ya manager target</text>
+</g>
+<g>
+<rect x="500" y="150" width="350" height="110" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
+<text x="675" y="186" font-size="18" text-anchor="middle" font-weight="650">TaskWatcherService</text>
+<text x="675" y="211" font-size="18" text-anchor="middle" font-weight="400">idempotent watch + Activity</text>
+<text x="675" y="236" font-size="18" text-anchor="middle" font-weight="400">bu addım bildiriş yaratmır</text>
+</g>
+<g>
+<rect x="55" y="350" width="325" height="110" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="217.5" y="398.5" font-size="18" text-anchor="middle" font-weight="650">Plain-text comment</text>
+<text x="217.5" y="423.5" font-size="18" text-anchor="middle" font-weight="400">trim; 1–5000 simvol</text>
+</g>
+<g>
+<rect x="500" y="350" width="350" height="110" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
+<text x="675" y="386" font-size="18" text-anchor="middle" font-weight="650">TaskCommentService</text>
+<text x="675" y="411" font-size="18" text-anchor="middle" font-weight="400">comment + Activity + notify</text>
+<text x="675" y="436" font-size="18" text-anchor="middle" font-weight="400">vahid transaction</text>
+</g>
+<g>
+<rect x="55" y="550" width="325" height="110" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="217.5" y="598.5" font-size="18" text-anchor="middle" font-weight="650">Status / assignment</text>
+<text x="217.5" y="623.5" font-size="18" text-anchor="middle" font-weight="400">öz application service-i</text>
+</g>
+<g>
+<rect x="500" y="550" width="350" height="110" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
+<text x="675" y="586" font-size="18" text-anchor="middle" font-weight="650">TaskWatcherNotificationService</text>
+<text x="675" y="611" font-size="18" text-anchor="middle" font-weight="400">eligible watcher-lər</text>
+<text x="675" y="636" font-size="18" text-anchor="middle" font-weight="400">actor-u çıxar; unique et</text>
+</g>
+<g>
+<rect x="1030" y="350" width="260" height="150" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="1160" y="406" font-size="18" text-anchor="middle" font-weight="650">Database notification</text>
+<text x="1160" y="431" font-size="18" text-anchor="middle" font-weight="400">active, uyğun member</text>
+<text x="1160" y="456" font-size="18" text-anchor="middle" font-weight="400">safe ID + summary</text>
+</g>
+<g>
+<rect x="1030" y="650" width="260" height="100" rx="12" fill="#f1f5f9" stroke="#64748b" stroke-width="1.8"/>
+<text x="1160" y="693.5" font-size="18" text-anchor="middle" font-weight="650">Web inbox</text>
+<text x="1160" y="718.5" font-size="18" text-anchor="middle" font-weight="400">read / read-all</text>
+</g>
+<g>
+<rect x="55" y="750" width="875" height="101" rx="12" fill="#f1f5f9" stroke="#64748b" stroke-width="1.8"/>
+<text x="492.5" y="781.5" font-size="18" text-anchor="middle" font-weight="650">Reporter və assignee auto-watch olur; explicit unwatch mümkündür.</text>
+<text x="492.5" y="806.5" font-size="18" text-anchor="middle" font-weight="400">Notification render zamanı task-lar batch visibleByIds ilə yenidən həll edilir.</text>
+<text x="492.5" y="831.5" font-size="18" text-anchor="middle" font-weight="400">Access itibsə task URL yox; safe unavailable summary göstərilir.</text>
+</g>
+<g>
+<rect x="55" y="880" width="1235" height="76" rx="12" fill="#fffbeb" stroke="#d97706" stroke-width="1.8"/>
+<text x="672.5" y="911.5" font-size="18" text-anchor="middle" font-weight="650">Comment silmə: author və ya manager; soft-delete + Activity, silinmiş body payload-da saxlanmır.</text>
+<text x="672.5" y="936.5" font-size="18" text-anchor="middle" font-weight="400">API notification inbox yoxdur; recipient seçimi ilə linkə sonrakı authorization ayrı yoxlamalardır.</text>
+</g>
+<text x="36" y="997" font-size="14" text-anchor="start" font-weight="400">TaskFlow • cari kodun izahı • bütöv repo müqaviləsi üçün docs-ibp</text>
+</svg>

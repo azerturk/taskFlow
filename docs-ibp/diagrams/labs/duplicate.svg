@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xml:lang="az" width="1400" height="1010" viewBox="0 0 1400 1010" role="img" aria-labelledby="title desc">
+<title id="title">R1: duplicate və projection identity</title>
+<desc id="desc">Əsas identity entry_id-dir; source_event_id bütün emal edilmiş event-lərin inbox ledger-i deyil.</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M 0 0 L 10 5 L 0 10 Z" fill="#64748b"/>
+</marker>
+</defs>
+<style>text{font-family:Segoe UI,Arial,sans-serif;fill:#0f172a}path,rect,ellipse{vector-effect:non-scaling-stroke}</style>
+<rect width="1400" height="1010" fill="#ffffff"/>
+<text x="36" y="47" font-size="29" text-anchor="start" font-weight="700">R1: duplicate və projection identity</text>
+<text x="36" y="77" font-size="16" text-anchor="start" font-weight="400">Əsas identity entry_id-dir; source_event_id bütün emal edilmiş event-lərin inbox ledger-i deyil.</text>
+<rect x="45" y="125" width="1310" height="195" rx="18" fill="#f5f3ff" stroke="#7c3aed" stroke-dasharray="7 5"/>
+<text x="65" y="154" font-size="17" text-anchor="start" font-weight="650">recordPublishedIfMissing: firstOrCreate(['entry_id' =&gt; ...], values)</text>
+<g>
+<rect x="80" y="185" width="390" height="95" rx="12" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="275" y="226" font-size="18" text-anchor="middle" font-weight="650">Event E1 → entry 7</text>
+<text x="275" y="251" font-size="18" text-anchor="middle" font-weight="400">title + publishedAt</text>
+</g>
+<path d="M 470 232 L 590 232" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<g>
+<path d="M 590 195 C 590 175,1290 175,1290 195 L 1290 275 C 1290 295,590 295,590 275 Z" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.8"/>
+<ellipse cx="940" cy="195" rx="350" ry="15" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="940" y="235.5" font-size="17" text-anchor="middle" font-weight="650">Projection: entry_id=7; source_event_id=E1</text>
+<text x="940" y="260.5" font-size="17" text-anchor="middle" font-weight="400">ilk title/tarix saxlanılır</text>
+</g>
+<path d="M 360 430 L 500 430" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 360 610 L 500 610" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 360 790 L 500 790" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<g>
+<rect x="65" y="380" width="295" height="100" rx="12" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="212.5" y="423.5" font-size="18" text-anchor="middle" font-weight="650">E1 → entry 7</text>
+<text x="212.5" y="448.5" font-size="18" text-anchor="middle" font-weight="400">normal duplicate</text>
+</g>
+<g>
+<rect x="500" y="380" width="790" height="100" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
+<text x="895" y="423.5" font-size="18" text-anchor="middle" font-weight="650">entry_id artıq var → yeni sətir yoxdur</text>
+<text x="895" y="448.5" font-size="18" text-anchor="middle" font-weight="400">mövcud title/tarix/event ID dəyişmir</text>
+</g>
+<g>
+<rect x="65" y="560" width="295" height="100" rx="12" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="212.5" y="603.5" font-size="18" text-anchor="middle" font-weight="650">E2 → entry 7</text>
+<text x="212.5" y="628.5" font-size="18" text-anchor="middle" font-weight="400">başqa event, eyni entry</text>
+</g>
+<g>
+<rect x="500" y="560" width="790" height="100" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
+<text x="895" y="603.5" font-size="18" text-anchor="middle" font-weight="650">Yenə eyni projection identity → yeni sətir yoxdur</text>
+<text x="895" y="628.5" font-size="18" text-anchor="middle" font-weight="400">ilk metadata qorunur; event E2 ayrıca qeyd edilmir</text>
+</g>
+<g>
+<rect x="65" y="740" width="295" height="100" rx="12" fill="#fff1f2" stroke="#e11d48" stroke-width="1.8"/>
+<text x="212.5" y="783.5" font-size="18" text-anchor="middle" font-weight="650">E1 → entry 8</text>
+<text x="212.5" y="808.5" font-size="18" text-anchor="middle" font-weight="400">ziddiyyətli payload</text>
+</g>
+<g>
+<rect x="500" y="740" width="790" height="100" rx="12" fill="#fff1f2" stroke="#e11d48" stroke-width="1.8"/>
+<text x="895" y="783.5" font-size="18" text-anchor="middle" font-weight="650">E1 əvvəl entry 7 sətirində saxlanılıbsa UNIQUE conflict</text>
+<text x="895" y="808.5" font-size="18" text-anchor="middle" font-weight="400">DB error udulmur; bu normal duplicate sayılmır</text>
+</g>
+<g>
+<rect x="45" y="880" width="1310" height="76" rx="12" fill="#f1f5f9" stroke="#64748b" stroke-width="1.8"/>
+<text x="700" y="911.5" font-size="18" text-anchor="middle" font-weight="650">Rebuild sətiri əvvəl yaradıbsa source_event_id null qala bilər; sonrakı event həmin sətiri dəyişmir.</text>
+<text x="700" y="936.5" font-size="18" text-anchor="middle" font-weight="400">UNIQUE + firstOrCreate projection duplicate-ni qoruyur; exactly-once delivery / tam Inbox vədi deyil.</text>
+</g>
+<text x="36" y="987" font-size="14" text-anchor="start" font-weight="400">TaskFlow • cari kodun izahı • bütöv repo müqaviləsi üçün docs-ibp</text>
+</svg>

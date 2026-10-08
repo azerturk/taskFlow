@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xml:lang="az" width="1320" height="940" viewBox="0 0 1320 940" role="img" aria-labelledby="title desc">
+<title id="title">Activity: audit yazısı və görünən tarixçə</title>
+<desc id="desc">Audit payload access qərarı vermir; oxu Projects/Tasks actor-visible scope-dan başlayır.</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M 0 0 L 10 5 L 0 10 Z" fill="#64748b"/>
+</marker>
+</defs>
+<style>text{font-family:Segoe UI,Arial,sans-serif;fill:#0f172a}path,rect,ellipse{vector-effect:non-scaling-stroke}</style>
+<rect width="1320" height="940" fill="#ffffff"/>
+<text x="36" y="47" font-size="29" text-anchor="start" font-weight="700">Activity: audit yazısı və görünən tarixçə</text>
+<text x="36" y="77" font-size="16" text-anchor="start" font-weight="400">Audit payload access qərarı vermir; oxu Projects/Tasks actor-visible scope-dan başlayır.</text>
+<rect x="45" y="120" width="1230" height="250" rx="18" fill="#eff6ff" stroke="#2563eb" stroke-dasharray="7 5"/>
+<text x="65" y="149" font-size="17" text-anchor="start" font-weight="650">Yazı: use-case state change daxilində</text>
+<path d="M 350 255 L 430 255" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 830 255 L 920 255" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<g>
+<rect x="80" y="200" width="270" height="110" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="215" y="236" font-size="18" text-anchor="middle" font-weight="650">Application service</text>
+<text x="215" y="261" font-size="18" text-anchor="middle" font-weight="400">canonical ActivityEvent</text>
+<text x="215" y="286" font-size="18" text-anchor="middle" font-weight="400">actor + subject</text>
+</g>
+<g>
+<rect x="430" y="200" width="400" height="110" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
+<text x="630" y="236" font-size="18" text-anchor="middle" font-weight="650">ActivityRecorder → sanitizer</text>
+<text x="630" y="261" font-size="18" text-anchor="middle" font-weight="400">secret/path/body dump yoxdur</text>
+<text x="630" y="286" font-size="18" text-anchor="middle" font-weight="400">schema_version: 1</text>
+</g>
+<g>
+<path d="M 920 210 C 920 190,1220 190,1220 210 L 1220 300 C 1220 320,920 320,920 300 Z" fill="#f1f5f9" stroke="#64748b" stroke-width="1.8"/>
+<ellipse cx="1070" cy="210" rx="150" ry="15" fill="#f1f5f9" stroke="#64748b" stroke-width="1.8"/>
+<text x="1070" y="255.5" font-size="17" text-anchor="middle" font-weight="650">activity_log</text>
+<text x="1070" y="280.5" font-size="17" text-anchor="middle" font-weight="400">Spatie morph metadata</text>
+</g>
+<rect x="45" y="425" width="1230" height="330" rx="18" fill="#ecfdf5" stroke="#059669" stroke-dasharray="7 5"/>
+<text x="65" y="454" font-size="17" text-anchor="start" font-weight="650">Oxu: global / project / task</text>
+<path d="M 350 565 L 430 565" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 830 565 L 920 565" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<g>
+<rect x="80" y="510" width="270" height="110" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="215" y="558.5" font-size="18" text-anchor="middle" font-weight="650">Actor + validated filter</text>
+<text x="215" y="583.5" font-size="18" text-anchor="middle" font-weight="400">ActivityQueryService</text>
+</g>
+<g>
+<rect x="430" y="495" width="400" height="140" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
+<text x="630" y="533.5" font-size="18" text-anchor="middle" font-weight="650">ActivityRepository</text>
+<text x="630" y="558.5" font-size="18" text-anchor="middle" font-weight="400">Projects/Tasks visibility scope</text>
+<text x="630" y="583.5" font-size="18" text-anchor="middle" font-weight="400">filter ID-ləri həmin scope-da</text>
+<text x="630" y="608.5" font-size="18" text-anchor="middle" font-weight="400">pagination + eager/batch data</text>
+</g>
+<g>
+<rect x="920" y="510" width="300" height="110" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="1070" y="546" font-size="18" text-anchor="middle" font-weight="650">Blade / API Resource</text>
+<text x="1070" y="571" font-size="18" text-anchor="middle" font-weight="400">hazır actor / subject</text>
+<text x="1070" y="596" font-size="18" text-anchor="middle" font-weight="400">lazy query yoxdur</text>
+</g>
+<g>
+<rect x="80" y="660" width="1140" height="51" rx="12" fill="#fffbeb" stroke="#d97706" stroke-width="1.8"/>
+<text x="650" y="691.5" font-size="18" text-anchor="middle" font-weight="650">Hidden/nonexistent filter ID fərqi metadata sızdırmamalıdır; subject_id özü authorization deyil.</text>
+</g>
+<g>
+<rect x="45" y="800" width="1230" height="76" rx="12" fill="#f1f5f9" stroke="#64748b" stroke-width="1.8"/>
+<text x="660" y="831.5" font-size="18" text-anchor="middle" font-weight="650">Sanitizer recursive denylist + depth/item/string limit verir; bütün request dump-u saxlanmır.</text>
+<text x="660" y="856.5" font-size="18" text-anchor="middle" font-weight="400">ActivityEvent burada audit enum-udur; R1 LearningEntryPublished kimi Laravel event dispatch-i deyil.</text>
+</g>
+<text x="36" y="917" font-size="14" text-anchor="start" font-weight="400">TaskFlow • cari kodun izahı • bütöv repo müqaviləsi üçün docs-ibp</text>
+</svg>

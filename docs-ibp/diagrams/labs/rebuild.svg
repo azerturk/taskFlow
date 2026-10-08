@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xml:lang="az" width="1400" height="1130" viewBox="0 0 1400 1130" role="img" aria-labelledby="title desc">
+<title id="title">R1: çatışmayan projection-ların bərpası</title>
+<desc id="desc">Public feed əvvəl oxunur; Insights-in yeni write-ları vahid transaction-da saxlanır.</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M 0 0 L 10 5 L 0 10 Z" fill="#64748b"/>
+</marker>
+</defs>
+<style>text{font-family:Segoe UI,Arial,sans-serif;fill:#0f172a}path,rect,ellipse{vector-effect:non-scaling-stroke}</style>
+<rect width="1400" height="1130" fill="#ffffff"/>
+<text x="36" y="47" font-size="29" text-anchor="start" font-weight="700">R1: çatışmayan projection-ların bərpası</text>
+<text x="36" y="77" font-size="16" text-anchor="start" font-weight="400">Public feed əvvəl oxunur; Insights-in yeni write-ları vahid transaction-da saxlanır.</text>
+<path d="M 390 220 L 485 220" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 905 220 L 1000 220" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<g>
+<rect x="45" y="165" width="345" height="110" rx="12" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="217.5" y="201" font-size="18" text-anchor="middle" font-weight="650">RebuildLearningInsightsService</text>
+<text x="217.5" y="226" font-size="18" text-anchor="middle" font-weight="400">PublishedLearningEntryFeed::all()</text>
+<text x="217.5" y="251" font-size="18" text-anchor="middle" font-weight="400">Catalog internal query-si yoxdur</text>
+</g>
+<g>
+<rect x="485" y="165" width="420" height="110" rx="12" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.8"/>
+<text x="695" y="201" font-size="18" text-anchor="middle" font-weight="650">Readonly DTO snapshot hazırdır</text>
+<text x="695" y="226" font-size="18" text-anchor="middle" font-weight="400">feed Insights write transaction-dan əvvəl</text>
+<text x="695" y="251" font-size="18" text-anchor="middle" font-weight="400">feed fail → heç bir write başlamır</text>
+</g>
+<g>
+<rect x="1000" y="165" width="355" height="110" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
+<text x="1177.5" y="213.5" font-size="18" text-anchor="middle" font-weight="650">DB transaction: hər DTO üçün</text>
+<text x="1177.5" y="238.5" font-size="18" text-anchor="middle" font-weight="400">recordPublishedIfMissing()</text>
+</g>
+<path d="M 1175 275 L 1175 375 L 1000 375 L 1000 440" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<g>
+<path d="M 1000 440 L 1240 500 L 1000 560 L 760 500 Z" fill="#fffbeb" stroke="#d97706" stroke-width="1.8"/>
+<text x="1000" y="506" font-size="17" text-anchor="middle" font-weight="650">entry_id projection-da var?</text>
+</g>
+<path d="M 760 500 L 470 500" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="615" y="485" font-size="15" text-anchor="middle" font-weight="400">bəli</text>
+<g>
+<rect x="45" y="445" width="425" height="110" rx="12" fill="#f1f5f9" stroke="#64748b" stroke-width="1.8"/>
+<text x="257.5" y="481" font-size="18" text-anchor="middle" font-weight="650">Mövcud sətir toxunulmur</text>
+<text x="257.5" y="506" font-size="18" text-anchor="middle" font-weight="400">title/date/sourceEventId qorunur</text>
+<text x="257.5" y="531" font-size="18" text-anchor="middle" font-weight="400">artıq sətirlər silinmir</text>
+</g>
+<path d="M 257.5 555 L 257.5 605 L 470 605 L 470 640" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="365" y="590" font-size="15" text-anchor="middle" font-weight="400">bütün entry-lər üzrə davam et</text>
+<path d="M 1000 560 L 1000 640" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="1000" y="610" font-size="15" text-anchor="middle" font-weight="400">xeyr</text>
+<g>
+<rect x="800" y="640" width="440" height="110" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
+<text x="1020" y="676" font-size="18" text-anchor="middle" font-weight="650">Missing projection insert</text>
+<text x="1020" y="701" font-size="18" text-anchor="middle" font-weight="400">source_event_id = null</text>
+<text x="1020" y="726" font-size="18" text-anchor="middle" font-weight="400">saxta event göndərilmir</text>
+</g>
+<path d="M 800 695 L 590 695" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<g>
+<path d="M 470 640 L 590 695 L 470 750 L 350 695 Z" fill="#fffbeb" stroke="#d97706" stroke-width="1.8"/>
+<text x="470" y="701" font-size="17" text-anchor="middle" font-weight="650">Hamısı uğurlu?</text>
+</g>
+<path d="M 350 695 L 180 695" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="265" y="680" font-size="15" text-anchor="middle" font-weight="400">bəli</text>
+<g>
+<rect x="55" y="770" width="300" height="100" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
+<text x="205" y="813.5" font-size="18" text-anchor="middle" font-weight="650">COMMIT</text>
+<text x="205" y="838.5" font-size="18" text-anchor="middle" font-weight="400">çatışmayanlar bərpa olunur</text>
+</g>
+<path d="M 180 695 L 180 770" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 470 750 L 470 815 L 635 815" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="540" y="800" font-size="15" text-anchor="middle" font-weight="400">write fail</text>
+<g>
+<rect x="635" y="770" width="655" height="100" rx="12" fill="#fff1f2" stroke="#e11d48" stroke-width="1.8"/>
+<text x="962.5" y="813.5" font-size="18" text-anchor="middle" font-weight="650">ROLLBACK: bu rebuild-in bütün yeni write-ları</text>
+<text x="962.5" y="838.5" font-size="18" text-anchor="middle" font-weight="400">əvvəlki projection-lar qalır; caller exception alır</text>
+</g>
+<g>
+<rect x="45" y="925" width="1310" height="101" rx="12" fill="#fffbeb" stroke="#d97706" stroke-width="1.8"/>
+<text x="700" y="956.5" font-size="18" text-anchor="middle" font-weight="650">Rebuild tekrar çağırıla bilər; duplicate yaratmır. Avtomatik retry worker yoxdur.</text>
+<text x="700" y="981.5" font-size="18" text-anchor="middle" font-weight="400">Missing-only recovery tam snapshot reconciliation deyil: update/delete ayrıca scope olardı.</text>
+<text x="700" y="1006.5" font-size="18" text-anchor="middle" font-weight="400">Local-event delivery itkisini bərpa etməyə kömək edir; Outbox/Inbox əvəzi deyil.</text>
+</g>
+<text x="36" y="1107" font-size="14" text-anchor="start" font-weight="400">TaskFlow • cari kodun izahı • bütöv repo müqaviləsi üçün docs-ibp</text>
+</svg>

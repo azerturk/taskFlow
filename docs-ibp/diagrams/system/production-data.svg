@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xml:lang="az" width="1440" height="1180" viewBox="0 0 1440 1180" role="img" aria-labelledby="title desc">
+<title id="title">Məhsul cədvəlləri və sahibliyi</title>
+<desc id="desc">Əsas domain əlaqələri göstərilir; bütöv column siyahısı DATA_MODEL.md-dədir.</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M 0 0 L 10 5 L 0 10 Z" fill="#64748b"/>
+</marker>
+</defs>
+<style>text{font-family:Segoe UI,Arial,sans-serif;fill:#0f172a}path,rect,ellipse{vector-effect:non-scaling-stroke}</style>
+<rect width="1440" height="1180" fill="#ffffff"/>
+<text x="36" y="47" font-size="29" text-anchor="start" font-weight="700">Məhsul cədvəlləri və sahibliyi</text>
+<text x="36" y="77" font-size="16" text-anchor="start" font-weight="400">Əsas domain əlaqələri göstərilir; bütöv column siyahısı DATA_MODEL.md-dədir.</text>
+<rect x="30" y="110" width="330" height="840" rx="18" fill="#f1f5f9" stroke="#64748b" stroke-dasharray="7 5"/>
+<text x="50" y="139" font-size="17" text-anchor="start" font-weight="650">Host cədvəlləri</text>
+<rect x="390" y="110" width="350" height="840" rx="18" fill="#eff6ff" stroke="#2563eb" stroke-dasharray="7 5"/>
+<text x="410" y="139" font-size="17" text-anchor="start" font-weight="650">Projects + Tasks sahibliyi</text>
+<rect x="780" y="110" width="620" height="840" rx="18" fill="#ecfdf5" stroke="#059669" stroke-dasharray="7 5"/>
+<text x="800" y="139" font-size="17" text-anchor="start" font-weight="650">Əməkdaşlıq və Media</text>
+<path d="M 310 200 L 440 200" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="375" y="184" font-size="15" text-anchor="middle" font-weight="400">owner_id FK</text>
+<path d="M 310 200 L 335 200 L 335 360 L 440 360" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="380" y="340" font-size="15" text-anchor="middle" font-weight="400">user_id FK</text>
+<path d="M 570 245 L 570 315" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="640" y="282" font-size="15" text-anchor="middle" font-weight="400">project_id FK</text>
+<path d="M 690 200 L 725 200 L 725 505 L 690 505" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="805" y="300" font-size="15" text-anchor="middle" font-weight="400">project_id FK</text>
+<path d="M 310 210 L 370 210 L 370 505 L 440 505" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="510" y="452" font-size="15" text-anchor="middle" font-weight="400">reporter / assignee FK</text>
+<path d="M 690 510 L 810 510" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="753" y="494" font-size="15" text-anchor="middle" font-weight="400">task_id FK</text>
+<path d="M 690 535 L 760 535 L 760 660 L 810 660" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="755" y="630" font-size="15" text-anchor="middle" font-weight="400">task_id FK</text>
+<path d="M 690 550 L 745 550 L 745 810 L 810 810" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="745" y="780" font-size="15" text-anchor="middle" font-weight="400">task_id FK</text>
+<path d="M 1230 765 L 1230 735 L 930 735 L 930 765" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="1080" y="720" font-size="15" text-anchor="middle" font-weight="400">media_id FK / UNIQUE</text>
+<path d="M 310 225 L 355 225 L 355 915 L 1260 915 L 1260 865" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="1170" y="898" font-size="15" text-anchor="middle" font-weight="400">uploaded_by FK</text>
+<path d="M 70 205 L 45 205 L 45 525 L 70 525" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" stroke-dasharray="7 5" marker-end="url(#arrow)"/>
+<text x="105" y="445" font-size="15" text-anchor="middle" font-weight="400">User morph</text>
+<path d="M 690 485 L 760 485 L 760 440 L 1085 440 L 1085 350 L 1110 350" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" stroke-dasharray="7 5" marker-end="url(#arrow)"/>
+<text x="950" y="420" font-size="15" text-anchor="middle" font-weight="400">subject morph</text>
+<path d="M 310 200 L 335 200 L 335 270 L 1230 270 L 1230 285" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" stroke-dasharray="7 5" marker-end="url(#arrow)"/>
+<text x="985" y="254" font-size="15" text-anchor="middle" font-weight="400">causer morph</text>
+<g>
+<rect x="70" y="160" width="240" height="90" rx="12" fill="#f1f5f9" stroke="#64748b" stroke-width="1.8"/>
+<text x="190" y="198.5" font-size="18" text-anchor="middle" font-weight="650">users</text>
+<text x="190" y="223.5" font-size="18" text-anchor="middle" font-weight="400">email UNIQUE</text>
+</g>
+<g>
+<rect x="70" y="310" width="240" height="100" rx="12" fill="#f1f5f9" stroke="#64748b" stroke-width="1.8"/>
+<text x="190" y="353.5" font-size="18" text-anchor="middle" font-weight="650">roles / permissions</text>
+<text x="190" y="378.5" font-size="18" text-anchor="middle" font-weight="400">model_has_* pivots</text>
+</g>
+<g>
+<rect x="70" y="465" width="240" height="120" rx="12" fill="#f1f5f9" stroke="#64748b" stroke-width="1.8"/>
+<text x="190" y="506" font-size="18" text-anchor="middle" font-weight="650">PAT / notifications</text>
+<text x="190" y="531" font-size="18" text-anchor="middle" font-weight="400">tokenable / notifiable</text>
+<text x="190" y="556" font-size="18" text-anchor="middle" font-weight="400">morph: user FK yoxdur</text>
+</g>
+<g>
+<rect x="70" y="645" width="240" height="120" rx="12" fill="#f1f5f9" stroke="#64748b" stroke-width="1.8"/>
+<text x="190" y="686" font-size="18" text-anchor="middle" font-weight="650">sessions / cache / jobs</text>
+<text x="190" y="711" font-size="18" text-anchor="middle" font-weight="400">framework infrastrukturu</text>
+<text x="190" y="736" font-size="18" text-anchor="middle" font-weight="400">sessions.user_id: index</text>
+</g>
+<g>
+<rect x="440" y="155" width="250" height="90" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="565" y="193.5" font-size="18" text-anchor="middle" font-weight="650">projects</text>
+<text x="565" y="218.5" font-size="18" text-anchor="middle" font-weight="400">owner_id; key UNIQUE</text>
+</g>
+<g>
+<rect x="440" y="315" width="250" height="90" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="565" y="353.5" font-size="18" text-anchor="middle" font-weight="650">project_members</text>
+<text x="565" y="378.5" font-size="18" text-anchor="middle" font-weight="400">(project,user) UNIQUE</text>
+</g>
+<g>
+<rect x="440" y="465" width="250" height="140" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="565" y="503.5" font-size="18" text-anchor="middle" font-weight="650">tasks</text>
+<text x="565" y="528.5" font-size="18" text-anchor="middle" font-weight="400">project; creator; assignee</text>
+<text x="565" y="553.5" font-size="18" text-anchor="middle" font-weight="400">parent_id: self FK</text>
+<text x="565" y="578.5" font-size="18" text-anchor="middle" font-weight="400">issue / column rank UNIQUE</text>
+</g>
+<path d="M 690 575 L 720 575 L 720 620 L 665 620 L 665 605" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="710" y="650" font-size="15" text-anchor="middle" font-weight="400">self FK</text>
+<g>
+<rect x="440" y="735" width="250" height="130" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="565" y="781" font-size="18" text-anchor="middle" font-weight="650">task_labels / task_label</text>
+<text x="565" y="806" font-size="18" text-anchor="middle" font-weight="400">label → project FK</text>
+<text x="565" y="831" font-size="18" text-anchor="middle" font-weight="400">pivot → task + label FK</text>
+</g>
+<path d="M 570 605 L 570 735" fill="none" stroke="#64748b" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<g>
+<rect x="810" y="465" width="240" height="90" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="930" y="503.5" font-size="18" text-anchor="middle" font-weight="650">task_comments</text>
+<text x="930" y="528.5" font-size="18" text-anchor="middle" font-weight="400">task + user FK</text>
+</g>
+<g>
+<rect x="810" y="615" width="240" height="90" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="930" y="653.5" font-size="18" text-anchor="middle" font-weight="650">task_watchers</text>
+<text x="930" y="678.5" font-size="18" text-anchor="middle" font-weight="400">task + user FK</text>
+</g>
+<g>
+<rect x="810" y="765" width="240" height="100" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8"/>
+<text x="930" y="808.5" font-size="18" text-anchor="middle" font-weight="650">task_attachments</text>
+<text x="930" y="833.5" font-size="18" text-anchor="middle" font-weight="400">task FK; media UNIQUE</text>
+</g>
+<g>
+<rect x="1110" y="765" width="240" height="100" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
+<text x="1230" y="796" font-size="18" text-anchor="middle" font-weight="650">media</text>
+<text x="1230" y="821" font-size="18" text-anchor="middle" font-weight="400">uploaded_by FK</text>
+<text x="1230" y="846" font-size="18" text-anchor="middle" font-weight="400">path / UUID UNIQUE</text>
+</g>
+<g>
+<rect x="1110" y="285" width="240" height="125" rx="12" fill="#f1f5f9" stroke="#64748b" stroke-width="1.8"/>
+<text x="1230" y="328.5" font-size="18" text-anchor="middle" font-weight="650">activity_log</text>
+<text x="1230" y="353.5" font-size="18" text-anchor="middle" font-weight="400">subject / causer morph</text>
+<text x="1230" y="378.5" font-size="18" text-anchor="middle" font-weight="400">DB FK yoxdur</text>
+</g>
+<g>
+<rect x="800" y="140" width="550" height="76" rx="12" fill="#f1f5f9" stroke="#64748b" stroke-width="1.8"/>
+<text x="1075" y="171.5" font-size="18" text-anchor="middle" font-weight="650">Activity record-u morph ID-lə access vermir.</text>
+<text x="1075" y="196.5" font-size="18" text-anchor="middle" font-weight="400">Scope Projects/Tasks görünürlüyündən gəlir.</text>
+</g>
+<g>
+<rect x="60" y="990" width="1290" height="101" rx="12" fill="#f1f5f9" stroke="#64748b" stroke-width="1.8"/>
+<text x="705" y="1021.5" font-size="18" text-anchor="middle" font-weight="650">Düz ox: FK-nin olduğu cədvəl əlaqəsi (ox oxuma rahatlığı üçün parent-dən child-a çəkilib).</text>
+<text x="705" y="1046.5" font-size="18" text-anchor="middle" font-weight="400">Kəsik ox: DB-nin məcbur etmədiyi logical/polymorphic əlaqə. Hər xətt bütün FK-ləri sadalamır.</text>
+<text x="705" y="1071.5" font-size="18" text-anchor="middle" font-weight="400">R1 cədvəlləri ayrı lab-data.svg-dədir; Dashboard ayrıca domain cədvəli yaratmır.</text>
+</g>
+<text x="36" y="1157" font-size="14" text-anchor="start" font-weight="400">TaskFlow • cari kodun izahı • bütöv repo müqaviləsi üçün docs-ibp</text>
+</svg>
